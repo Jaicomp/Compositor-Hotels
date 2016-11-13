@@ -24,6 +24,7 @@
   color: #bba86d;
 }
 * header ul li {
+  cursor: pointer;
   margin-top: 1px;
 }
 * header ul li.active {
@@ -31,5 +32,10 @@
 }
 * div#content {
   position: fixed;
-  left: 130px;
+  top: 0;
+  left: 100px;
+}
+* div#content img {
+  width: 100%;
+  height: auto;
 }

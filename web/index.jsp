@@ -32,10 +32,17 @@
             <li>•</li>
         </ul>
         
-        
         </header>
         <div id="content">
-            ola
+            <div id="home">
+                
+            </div>
+            
+            <img id="mainImage" src="<%= request.getContextPath() %>/assets/images/hotel.jpg" width="100" height="100"/>
+            
+           <img src="<%= request.getContextPath() %>/assets/images/hotel.jpg" width="100" height="100"/>
+            OKIS
+            
         </div>
     </body>
 </html>
