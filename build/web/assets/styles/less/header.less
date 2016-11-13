@@ -1,0 +1,47 @@
+@light-brown: #bba86d;
+
+* {
+	margin: 0;
+	padding: 0;
+
+	header {
+		float: left;
+		width: 100px;
+		height: 100%;
+		border: 1px solid red;
+		position: fixed;
+
+		img {
+			margin-top: 30px;
+		}
+
+		ul {
+			list-style-type: none;
+			padding-left: 20px;
+			position: absolute;
+			left: 20%;
+			top: 35%;
+			font-size: 55px;
+
+			&:hover li:hover {
+				color: @light-brown;
+			}
+
+			li {
+
+				margin-top: 1px;
+				&.active {
+					color: @light-brown;
+				}
+			}
+
+		}
+
+	}
+
+	div#content {
+		position: fixed;
+		left: 130px;
+	}
+
+}
