@@ -55,7 +55,7 @@
 		
 		margin-left: 100px;
 		div#home {
-			z-index: -1;
+			z-index: 1;
 			position: relative;
 			height: auto;
 			img {
@@ -64,6 +64,7 @@
 			}
 
 			h1 {
+				z-index: 3;
 				position: absolute;
 				top: 30%;
 				left: 30%;
@@ -72,6 +73,7 @@
 			}	
 
 			h2 {
+				z-index: 4;
 				position: absolute;
 				top: 45%;
 				left: 40%;
@@ -80,6 +82,7 @@
 			}
 
 			a {
+				z-index: 5;
 				position: absolute;
 				top: 60%;
 				left: 40%;
@@ -90,12 +93,14 @@
 				border: 3px solid @light-brown;
 
 				&:hover {
+					z-index: 100;
 					background-color: @light-brown;
 				}
 
 			}
 
 			div#backgroundFilter {
+				z-index: 2;
 				position: absolute;
 				top:0;
 				left: 0;

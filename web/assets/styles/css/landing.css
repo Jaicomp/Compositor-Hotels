@@ -43,7 +43,7 @@
   margin-left: 100px;
 }
 * div#content div#home {
-  z-index: -1;
+  z-index: 1;
   position: relative;
   height: auto;
 }
@@ -52,6 +52,7 @@
   height: 100%;
 }
 * div#content div#home h1 {
+  z-index: 3;
   position: absolute;
   top: 30%;
   left: 30%;
@@ -59,6 +60,7 @@
   color: white;
 }
 * div#content div#home h2 {
+  z-index: 4;
   position: absolute;
   top: 45%;
   left: 40%;
@@ -66,6 +68,7 @@
   color: white;
 }
 * div#content div#home a {
+  z-index: 5;
   position: absolute;
   top: 60%;
   left: 40%;
@@ -76,9 +79,11 @@
   border: 3px solid #bba86d;
 }
 * div#content div#home a:hover {
+  z-index: 100;
   background-color: #bba86d;
 }
 * div#content div#home div#backgroundFilter {
+  z-index: 2;
   position: absolute;
   top: 0;
   left: 0;
@@ -102,7 +107,7 @@
   text-align: center;
   padding: 10px 5px;
   position: absolute;
-  z-index: 10;
+  z-index: 200;
   top: 15px;
   left: 130%;
   font-size: 15px;
