@@ -16,7 +16,7 @@
         <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon.ico">
         
         <!-- Styles -->
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/styles/css/header.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/styles/css/landing.css">
     
         <!-- CDN -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -27,12 +27,11 @@
         
         <ul>
             
-            <li class="active"><a href="#home">•</a></li>
-            <li><a href="#about">•</a></li>
-            <li><a href="#">•</a></li>
-            <li><a href="#">•</a></li>
-            <li><a href="#">•</a></li>
-            <li><a href="#">•</a></li>
+            <li class="active" ><a href="#home" class="tooltip">•<span class="tooltiptext">Home</span></a></li>
+            <li><a href="#about" class="tooltip">•<span class="tooltiptext">About</span></a></li>
+            <li><a href="#" class="tooltip">•<span class="tooltiptext">Rooms</span></a></li>
+            <li><a href="#" class="tooltip">•<span class="tooltiptext">Services</span></a></li>
+            <li><a href="#" class="tooltip">•<span class="tooltiptext">Location</span></a></li>
         </ul>
         
         </header>
