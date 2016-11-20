@@ -1,0 +1,44 @@
+DROP TABLE "Client";
+DROP TABLE "Hotel";
+DROP TABLE "TypeRoom";
+DROP TABLE "Booking";
+DROP TABLE "R_Booking_TypeRoom";
+
+CREATE TABLE IF NOT EXISTS "Client" (
+	id serial primary key,
+	firstName varchar(30),
+	lastName varchar(30),
+	email varchar(50)
+);
+
+CREATE TABLE IF NOT EXISTS "Hotel" (
+	id serial primary key,
+	name varchar(30),
+	description varchar(100),
+	url varchar(50)
+	);
+
+CREATE TABLE IF NOT EXISTS "TypeRoom" (
+	id serial primary key,
+	name varchar(30),
+	description varchar(100)
+	);
+
+CREATE TABLE IF NOT EXISTS"Booking" (
+	id serial primary key,
+	adult int2,
+	smallers int2,
+	entry_date date,
+	departure_date date,
+	idClient int references "Client"(id),
+	idHotel int references "Hotel"(id),
+	idTypeRoom int references "TypeRoom"(id)
+	);
+
+CREATE TABLE IF NOT EXISTS "R_Booking_TypeRoom" (
+	id serial primary key,
+	idBooking int references "Booking"(id),
+	idTypeRoom int references "TypeRoom"(id),
+	numRoomsAvailable int,
+	price int
+	);

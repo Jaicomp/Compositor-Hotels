@@ -1,3 +1,16 @@
+
+DROP TABLE "Client";
+DROP TABLE "Hotel";
+DROP TABLE "TypeRoom";
+DROP TABLE "Booking";
+DROP TABLE "R_Booking_TypeRoom";
+
+CREATE TABLE IF NOT EXISTS "Client" (
+	id serial primary key,
+	firstName varchar(30),
+	lastName varchar(30),
+	email varchar(50)
+);
 Client (
 	id INT,
  	firstName VARCHAR(30), 
@@ -24,7 +37,7 @@ Hotel (
 	)
 
 TypeRoom (
-	code INT,
+	id INT,
 	name VARCHAR(30),
 	description VARCHAR(100)
 	)

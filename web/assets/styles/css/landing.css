@@ -101,26 +101,27 @@
 }
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  width: 60px;
   background-color: #353944;
   color: #fff;
   text-align: center;
   padding: 10px 5px;
   position: absolute;
-  z-index: 200;
-  top: 15px;
-  left: 130%;
+  z-index: 9;
+  top: 80%;
+  left: 170%;
   font-size: 15px;
   font-weight: bold;
   color: white;
+  margin-left: -60px;
 }
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
-  top: 50%;
-  right: 100%;
-  margin-top: -5px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent #353944 transparent transparent;
+  border-color: transparent transparent #353944 transparent;
 }
