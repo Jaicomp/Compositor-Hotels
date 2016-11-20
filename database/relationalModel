@@ -1,0 +1,53 @@
+Client (
+	id INT,
+ 	firstName VARCHAR(30), 
+	lastName VARCHAR(30), 
+	email VARCHAR(50)
+	)
+
+Booking (
+	id INT,
+	adult INT,
+	smallers INT,
+	entry_date DATE,
+	departure_date DATE,
+	idClient INT FOREIGN KEY,
+	idHotel INT FOREIGN KEY,
+	code INT FOREIGN KEY
+	)
+
+Hotel (
+	id INT,
+	name VARCHAR(30),
+	description VARCHAR(100),
+	url VARCHAR(50)
+	)
+
+TypeRoom (
+	code INT,
+	name VARCHAR(30),
+	description VARCHAR(100)
+	)
+
+R_Booking_TypeRoom (
+	id INT,
+	idBooking INT FOREIGN KEY,
+	idTypeRoom INT FOREIGN KEY,
+	numRoomsAvailable INT,
+	price INT
+	)
+
+
+R_Client_Booking (idClient, idBooking) -> idBooking
+
+R_Booking_Hotel (idBooking, idHotel) -> idBooking
+
+R_Booking_TypeRoom (id, idBooking, idTypeRoom, roomsAvailable, price) -> idBooking 
+
+
+
+
+
+
+
+
