@@ -41,7 +41,7 @@
               <div id="backgroundFilter"></div>
               <h1><hr>Compositor Hotels<br><hr></h1>
               <h2>IN MAJORCA</h2>
-              <a href="rooms">MAKE A RESERVATION</a>
+              <a href="rooms.jsp">MAKE A RESERVATION</a>
               
             </div>
             <div id="about">
