@@ -1,0 +1,63 @@
+* {
+	body {
+		font-family: "Times Roman";
+		div#content {	
+	
+			div#listRooms {
+				float: right;
+				width: 1150px;
+
+	
+
+				div#formatConfiguration {
+					border-width: 5px 1px 1px 1px;
+					border-style: solid;
+					border-color: @blue;
+					border-radius: 5px;
+					padding: 5px;
+					height: 20px;
+					div#optionsFormat {
+						color: @blue;
+						float: left;
+						cursor: pointer;
+						span.redColor{
+							color: red;
+						}
+					}
+
+					div#typeFormat {
+						float: right;
+						font-size: 20px;
+						span {
+							margin-right: 10px;
+							cursor: pointer;
+						}
+					}
+					
+				}
+
+				div#typeRoomConfiguration {
+					margin-top: 3px;
+					border-width: 5px 1px 1px 1px;
+					border-style: solid;
+					border-color: @green;
+					border-radius: 5px;
+					padding: 5px;
+					height: 20px;
+					span:not(:last-child) {
+						color: @blue;
+						border-right: 1px solid @blue;
+						margin-right: 3px;
+						cursor: pointer;
+					}
+					span:last-child {
+						color: @blue;
+						cursor: pointer;
+					}
+
+				}
+		
+			}
+		}
+	}
+}
