@@ -48,6 +48,7 @@
                     <h1>Search</h1>
                         Hotel:<br>
                     <select name="hotel">
+                        <option value="Todos">Todos</option>
                         <option value="SonNet">Son Net</option>
                         <option value="CanBlau">Can Blau</option>
                     </select>
@@ -80,7 +81,7 @@
                             <td>
                                 <select name="adults">
                                     <%
-                                        for(int i = 0; i <= MAXNUMADULTS; i++){
+                                        for(int i = 1; i <= MAXNUMADULTS; i++){
 
                                             out.println("<option value="+i+">"+i+"</option>");
                                         }
@@ -96,7 +97,7 @@
                             <td>
                                 <select name="children">
                                     <%
-                                        for(int i = 1; i <= MAXNUMCHILDREN; i++){
+                                        for(int i = 0; i <= MAXNUMCHILDREN; i++){
 
                                             out.println("<option value="+i+">"+i+"</option>");
                                         }
@@ -139,7 +140,22 @@
                     <span>
                         Individual
                     </span>
-                    
+                </div>
+                <div class="room">
+                    <img class="imageRoom"src="http://www.srisrivaastu.com/image/peh-superior-room.jpg"
+                         alt="room" width="200" height="200" >
+                    <div class="nameHotel">Hotel SonNet</div>
+                    <div class="price">€350</div>
+                    <div class="typeRoom"><img src="<%= request.getContextPath() %>/assets/images/numpeopleroom.svg" width="20" height="20"/> Doble Vista Mar</div>
+                    <button class="bookingButton">Reservar habitación ➤</button>
+                </div>
+                <div class="room">
+                    <img class="imageRoom"src="http://www.srisrivaastu.com/image/peh-superior-room.jpg"
+                         alt="room" width="200" height="200" >
+                    <div class="nameHotel">Hotel SonNet</div>
+                    <div class="price">€350</div>
+                    <div class="typeRoom"><img src="<%= request.getContextPath() %>/assets/images/numpeopleroom.svg" width="20" height="20"/> Doble Vista Mar</div>
+                    <button class="bookingButton">Reservar habitación ➤</button>
                 </div>
             </div>
         </div>
