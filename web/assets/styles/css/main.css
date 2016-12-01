@@ -28,7 +28,8 @@
   display: inline;
   color: black;
 }
-* body header nav ul li:hover {
+* body header nav ul li:hover,
+* body header nav ul li.active {
   border-bottom: 4px solid #bba86d;
   padding-bottom: 10px;
 }

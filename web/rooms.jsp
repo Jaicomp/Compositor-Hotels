@@ -4,6 +4,9 @@
     Author     : jaimescript
 --%>
 
+<%@page import="hotel.Room"%>
+<%@page import="hotel.Hotel"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,6 +24,10 @@
         <!-- CDN -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     
+        <!-- Beans -->
+        <jsp:useBean id="hotelDB" class="database.DBHotel" scope="request" />
+        <jsp:useBean id="roomDB" class="database.DBRooms" scope="request" />
+        
         <!-- Declarations -->
         <%! public static final int MAXNUMROOMS = 10;
             public static final int MAXNUMADULTS = 10;
@@ -34,7 +41,7 @@
                 <img src="<%= request.getContextPath() %>/assets/images/logo.png" width="100" height="100" /> 
             
                 <ul>
-                    <li>Rooms & Suites</li><span class="whitespace"> </span>
+                    <li class="active">Rooms & Suites</li><span class="whitespace"> </span>
                     <li> Gallery</li><span class="whitespace"> </span>
                     <li> About us</li><span class="whitespace"> </span>
                     <li> Contact us</li><span class="whitespace"> </span>
@@ -48,15 +55,23 @@
                     <h1>Search</h1>
                         Hotel:<br>
                     <select name="hotel">
-                        <option value="Todos">Todos</option>
-                        <option value="SonNet">Son Net</option>
-                        <option value="CanBlau">Can Blau</option>
+                        <option value="All">Todos</option>
+                        
+                    <%
+                        ArrayList<Hotel> hotels = hotelDB.getHotels();
+                        
+                        for (int i = 0; i < hotels.size(); i++) {
+                            out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
+                        }
+            
+                    %>
+                        
                     </select>
                     <br>
                     Check-in<br>
-                    <input type="date" name="checkindate" min="2016-11-21" max="2018-01-01"/><br>
+                    <input type="date" name="checkindate" min="2016-11-21" max="2018-01-01" required /><br>
                     Check-out<br>
-                    <input type="date" name="checkoutdate" min="2016-11-21" max="2018-01-01"/><br>
+                    <input type="date" name="checkoutdate" min="2016-11-21" max="2018-01-01" required /><br>
                     <table>
                         <tr>
                             <td>
@@ -125,21 +140,15 @@
                     </div>
                 </div>
                 <div id="typeRoomConfiguration">
-                    <span>
-                        Suite
-                    </span>
-                    <span>
-                        Junior Suite
-                    </span>
-                    <span>
-                        Doble
-                    </span>
-                    <span>
-                        Doble Vista Mar
-                    </span>
-                    <span>
-                        Individual
-                    </span>
+                    
+                    <%
+                        ArrayList<Room> rooms = roomDB.getTypeRooms();
+                        for (int i = 0; i < rooms.size(); i++) {
+                                out.print("<span>" + rooms.get(i).getTypeRoom() + "</span>");
+                            }
+                        
+                        
+                        %>
                 </div>
                 <div class="room">
                     <img class="imageRoom"src="http://www.srisrivaastu.com/image/peh-superior-room.jpg"

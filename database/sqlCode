@@ -1,3 +1,5 @@
+createdb compositorhotels
+
 DROP TABLE "Client";
 DROP TABLE "Hotel";
 DROP TABLE "TypeRoom";
@@ -18,11 +20,21 @@ CREATE TABLE IF NOT EXISTS "Hotel" (
 	url varchar(50)
 	);
 
+insert into "Hotel"("name","description","url") values ('Son Net', 'Gran Hotel en Puigpunyent', 'sonnet@mail.com');
+insert into "Hotel"("name","description","url") values ('Can Blau', 'Gran Hotel en Puigpunyent', 'canblau@mail.com');
+
 CREATE TABLE IF NOT EXISTS "TypeRoom" (
 	id serial primary key,
 	name varchar(30),
 	description varchar(100)
 	);
+
+insert into "TypeRoom"("name", "description") values ('Suite', 'Big room');
+insert into "TypeRoom"("name", "description") values ('Junior Suite', 'small room for children');
+insert into "TypeRoom"("name", "description") values ('Doble', 'For two people');INSERT 0 1
+insert into "TypeRoom"("name", "description") values ('Doble Vista Mar', 'For two people with sea view');
+insert into "TypeRoom"("name", "description") values ('Individual', 'For a person');
+
 
 CREATE TABLE IF NOT EXISTS"Booking" (
 	id serial primary key,
@@ -35,10 +47,32 @@ CREATE TABLE IF NOT EXISTS"Booking" (
 	idTypeRoom int references "TypeRoom"(id)
 	);
 
-CREATE TABLE IF NOT EXISTS "R_Booking_TypeRoom" (
+CREATE TABLE IF NOT EXISTS "R_Hotel_TypeRoom" (
 	id serial primary key,
-	idBooking int references "Booking"(id),
+	idHotel int references "Hotel"(id),
 	idTypeRoom int references "TypeRoom"(id),
 	numRoomsAvailable int,
 	price int
 	);
+
+select * from "Hotel";
+select * from "TypeRoom";
+
+insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price") values (1, 1, 3, 350);
+insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price") values (1, 2, 10, 250)
+insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price") values (1, 3, 2, 450);
+insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price") values (1, 4, 6, 850);
+insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price") values (1, 5, 3, 200);
+
+insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price") values (2, 1, 5, 300);
+insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price") values (2, 2, 1, 200);
+insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price") values (2, 3, 5, 480);
+insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price") values (2, 4, 9, 700);
+insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price") values (2, 5, 4, 150);
+
+
+
+
+
+
+
