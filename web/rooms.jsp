@@ -142,14 +142,33 @@
                 <div id="typeRoomConfiguration">
                     
                     <%
-                        ArrayList<Room> rooms = roomDB.getTypeRooms();
-                        for (int i = 0; i < rooms.size(); i++) {
-                                out.print("<span>" + rooms.get(i).getTypeRoom() + "</span>");
+                        ArrayList<Room> typeRooms = roomDB.getTypeRooms();
+                        for (int i = 0; i < typeRooms.size(); i++) {
+                                out.print("<span>" + typeRooms.get(i).getTypeRoom() + "</span>");
                             }
                         
                         
                         %>
                 </div>
+                
+                
+                <%
+                        ArrayList<Room> rooms = roomDB.getRooms();
+                        out.print(rooms.get(0).getTypeRoom());
+                        for (int i = 0; i < rooms.size(); i++) {
+                                out.print("<div class='room'>");
+                                out.print("<img class='imageRoom' src='http://www.srisrivaastu.com/image/peh-superior-room.jpg'alt='room' width='200' height='200' >");
+                                out.print("<div class='nameHotel'>" + rooms.get(i).getHotelName() + "</div>");
+                                out.print("<div class='price'>€" + rooms.get(i).getPrice() + "</div>");
+                                out.print("<div class='typeRoom'><img src='"+request.getContextPath()+"/assets/images/numpeopleroom.svg' width='20' height='20'/>" + rooms.get(i).getTypeRoom() +"</div>");
+                                out.print("<button class='bookingButton'>Reservar habitación ➤</button>");
+                                out.print("</div>");
+                        }
+                        
+                        
+                %>
+                
+                
                 <div class="room">
                     <img class="imageRoom"src="http://www.srisrivaastu.com/image/peh-superior-room.jpg"
                          alt="room" width="200" height="200" >
