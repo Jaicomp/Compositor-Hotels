@@ -55,24 +55,24 @@
   background: -moz-linear-gradient(#ffbb33, #FF8800);
   background: linear-gradient(#ffd180, #ffb300);
 }
-* body div#content div#panel form h1 {
+* body div#content div#panel h1 {
   font-weight: normal;
   color: #0d47a1;
 }
-* body div#content div#panel form select {
+* body div#content div#panel select {
   background-color: white;
   border: 1px solid grey;
   border-radius: 5px;
   font-size: 20px;
   margin-bottom: 10px;
 }
-* body div#content div#panel form input[type='date'] {
+* body div#content div#panel input[type='date'] {
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
   font-size: 20px;
 }
-* body div#content div#panel form button {
+* body div#content div#panel button {
   font-size: 30px;
   color: white;
   background-color: #0896ff;
@@ -80,7 +80,7 @@
   border: 0;
   padding: 5px;
 }
-* body div#content div#panel form button:hover {
+* body div#content div#panel button:hover {
   background-color: #003580;
 }
 * body div#content div#listRooms {
@@ -172,7 +172,15 @@
 * body div#content div#listRooms div.room div.typeRoom {
   padding: 0;
   position: absolute;
-  top: 150px;
+  top: 120px;
+  left: 225px;
+  color: #0896ff;
+  font-size: 20px;
+}
+* body div#content div#listRooms div.room div.numberOfRoomsAvailable {
+  padding: 0;
+  position: absolute;
+  top: 160px;
   left: 225px;
   color: #0896ff;
   font-size: 20px;

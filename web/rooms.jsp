@@ -21,12 +21,16 @@
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/styles/css/main.css">
         
+        <!-- JS --> 
+        <script src="<%= request.getContextPath() %>/assets/js/ajax.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/autocompleteroomslist.js"></script>
+        
         <!-- CDN -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     
         <!-- Beans -->
         <jsp:useBean id="hotelDB" class="database.DBHotel" scope="request" />
-        <jsp:useBean id="roomDB" class="database.DBRooms" scope="request" />
+        <jsp:useBean id="roomDB" class="database.DBRoom" scope="request" />
         
         <!-- Declarations -->
         <%! public static final int MAXNUMROOMS = 10;
@@ -35,7 +39,7 @@
         
         %>
     </head>
-    <body>
+    <body onload="init()">
         <header>
             <nav>
                 <img src="<%= request.getContextPath() %>/assets/images/logo.png" width="100" height="100" /> 
@@ -51,83 +55,68 @@
         <div id="content">
             
             <div id="panel">
-                <form>
-                    <h1>Search</h1>
-                        Hotel:<br>
-                    <select name="hotel">
-                        <option value="All">Todos</option>
-                        
-                    <%
-                        ArrayList<Hotel> hotels = hotelDB.getHotels();
-                        
-                        for (int i = 0; i < hotels.size(); i++) {
-                            out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
-                        }
-            
-                    %>
-                        
-                    </select>
-                    <br>
-                    Check-in<br>
-                    <input type="date" name="checkindate" min="2016-11-21" max="2018-01-01" required /><br>
-                    Check-out<br>
-                    <input type="date" name="checkoutdate" min="2016-11-21" max="2018-01-01" required /><br>
-                    <table>
-                        <tr>
-                            <td>
-                                Rooms 
-                            </td>
-                            <td>
-                                <select name="numRooms">
-                                    <%
-                                    for(int i = 1; i <= MAXNUMROOMS; i++){
-                                              
+                <h1>Search</h1>
+                    Hotel:<br>
+                <select name="hotel">
+                    <option value="All">Todos</option>
+
+                <%
+                    ArrayList<Hotel> hotels = hotelDB.getHotels();
+
+                    for (int i = 0; i < hotels.size(); i++) {
+                        out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
+
+                    }
+
+                %>
+
+                </select>
+                <br>
+                Check-in<br>
+                <input type="date" name="checkindate" min="2016-11-21" max="2018-01-01" required /><br>
+                Check-out<br>
+                <input type="date" name="checkoutdate" min="2016-11-21" max="2018-01-01" required /><br>
+                <table>
+
+                    <tr>
+                        <td>
+                            Adults
+                       </td>
+                        <td>
+                            <select name="adults">
+                                <%
+                                    for(int i = 1; i <= MAXNUMADULTS; i++){
+
                                         out.println("<option value="+i+">"+i+"</option>");
                                     }
-                                            
-                                    %>
-                                </select> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Adults
-                           </td>
-                            <td>
-                                <select name="adults">
-                                    <%
-                                        for(int i = 1; i <= MAXNUMADULTS; i++){
 
-                                            out.println("<option value="+i+">"+i+"</option>");
-                                        }
+                                %>
+                            </select> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Children
+                        </td>
+                        <td>
+                            <select name="children">
+                                <%
+                                    for(int i = 0; i <= MAXNUMCHILDREN; i++){
 
-                                    %>
-                                </select> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Children
-                            </td>
-                            <td>
-                                <select name="children">
-                                    <%
-                                        for(int i = 0; i <= MAXNUMCHILDREN; i++){
+                                        out.println("<option value="+i+">"+i+"</option>");
+                                    }
 
-                                            out.println("<option value="+i+">"+i+"</option>");
-                                        }
-
-                                    %>
-                                </select> 
-                            </td>
-                        </tr>
+                                %>
+                            </select> 
+                        </td>
+                    </tr>
 
 
-                    </table>
-                                
-                    <button>Search</button>
+                </table>
 
-                </form>
+                <button onclick="autocompleteRoomsList()">Search</button>
+
+                
             </div>
             <div id="listRooms">
                 <div id="formatConfiguration">
@@ -151,10 +140,9 @@
                         %>
                 </div>
                 
-                
+                <!--
                 <%
                         ArrayList<Room> rooms = roomDB.getRooms();
-                        out.print(rooms.get(0).getTypeRoom());
                         for (int i = 0; i < rooms.size(); i++) {
                                 out.print("<div class='room'>");
                                 out.print("<img class='imageRoom' src='http://www.srisrivaastu.com/image/peh-superior-room.jpg'alt='room' width='200' height='200' >");
@@ -162,29 +150,27 @@
                                 out.print("<div class='price'>€" + rooms.get(i).getPrice() + "</div>");
                                 out.print("<div class='typeRoom'><img src='"+request.getContextPath()+"/assets/images/numpeopleroom.svg' width='20' height='20'/>" + rooms.get(i).getTypeRoom() +"</div>");
                                 out.print("<button class='bookingButton'>Reservar habitación ➤</button>");
+                                out.print("<div class='numberOfRoomsAvailable'>Habitaciones disponibles: " + rooms.get(i).getNumRoomsAvailable() + "</div>");
                                 out.print("</div>");
+                
                         }
                         
                         
                 %>
+                -->
                 
-                
+               
                 <div class="room">
                     <img class="imageRoom"src="http://www.srisrivaastu.com/image/peh-superior-room.jpg"
                          alt="room" width="200" height="200" >
                     <div class="nameHotel">Hotel SonNet</div>
                     <div class="price">€350</div>
                     <div class="typeRoom"><img src="<%= request.getContextPath() %>/assets/images/numpeopleroom.svg" width="20" height="20"/> Doble Vista Mar</div>
+                    <div class="numberOfRoomsAvailable">Habitaciones disponibles: 50</div>
                     <button class="bookingButton">Reservar habitación ➤</button>
                 </div>
-                <div class="room">
-                    <img class="imageRoom"src="http://www.srisrivaastu.com/image/peh-superior-room.jpg"
-                         alt="room" width="200" height="200" >
-                    <div class="nameHotel">Hotel SonNet</div>
-                    <div class="price">€350</div>
-                    <div class="typeRoom"><img src="<%= request.getContextPath() %>/assets/images/numpeopleroom.svg" width="20" height="20"/> Doble Vista Mar</div>
-                    <button class="bookingButton">Reservar habitación ➤</button>
-                </div>
+               
+            
             </div>
         </div>
     </body>
