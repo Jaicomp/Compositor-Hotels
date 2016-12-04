@@ -1,0 +1,27 @@
+{
+  "name": "compositorhotel",
+  "version": "1.0.0",
+  "description": "Tourism website",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaicomp/Compositor-Hotels.git"
+  },
+  "keywords": [
+    "Hotel",
+    "Compositor"
+  ],
+  "author": "Jaicomp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jaicomp/Compositor-Hotels/issues"
+  },
+  "homepage": "https://github.com/Jaicomp/Compositor-Hotels#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0"
+  }
+}
