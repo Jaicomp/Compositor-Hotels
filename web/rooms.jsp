@@ -157,6 +157,16 @@
                         <script>
                             function changeActiveClass(obj) {
                                 obj.classList.toggle("active");
+                                /*
+                                let notFountActiveClass = obj.getAttribute("class").search("active") == -1;
+                                
+                                let rooms = document.getElementsByClassName("room");
+                                for (let i = 0; i < rooms.lenght; i++) {
+                                    if(rooms[i].getAttribute("typeRoom").search(obj.innerHTML) != -1) {
+                                        rooms[i].classList.toggle("visible");
+                                    }
+                                }
+                                */
                             }
                             
                             
@@ -182,7 +192,7 @@
                 %>
                 -->
                 
-               
+               <!--
                 <div class="room">
                     <img class="imageRoom"src="http://www.srisrivaastu.com/image/peh-superior-room.jpg"
                          alt="room" width="200" height="200" >
@@ -192,7 +202,7 @@
                     <div class="numberOfRoomsAvailable">Habitaciones disponibles: 50</div>
                     <button class="bookingButton">Reservar habitación ➤</button>
                 </div>
-               
+               -->
             
             </div>
         </div>
