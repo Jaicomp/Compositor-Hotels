@@ -1,18 +1,30 @@
-let requestAutoCompleteRoomsList = {
-	method: "GET",
-	url: "AutocompleteRoomsList",
-	isAsynchronous: true
-}
+
 let listRooms;
+let hotel;
+let hotelName;
+
 function init() {
 	listRooms = document.getElementById("listRooms");
+        hotel = document.getElementsByTagName("select")[0];
+        hotelName = hotel.options[hotel.selectedIndex].value;
 	
 }
 
-function autocompleteRoomsList(hotel) {
+function autocompleteRoomsList() {
     
-    requestAutoCompleteRoomsList.url = requestAutoCompleteRoomsList.url + "?hotel="+hotel;
-    sendRequest(requestAutoCompleteRoomsList,function(responseXML) {
+    
+    removeAllRooms();
+    
+    let request = {
+	method: "GET",
+	url: "AutocompleteRoomsList?hotel="+hotelName,
+	isAsynchronous: true
+    }
+    
+    
+    sendRequest(request,function(responseXML) {
+        
+        removeAllRooms();
         
         let rooms = responseXML.getElementsByTagName("rooms")[0];
         
@@ -62,7 +74,7 @@ function autocompleteRoomsList(hotel) {
                 
                 let bookingButton = document.createElement("button");
                 bookingButton.setAttribute("class", "bookingButton");
-                textNode = document.createTextNode(room.getElementsByTagName("Reservar habitación ➤")[0]);
+                textNode = document.createTextNode("Reservar habitación ➤");
                 bookingButton.appendChild(textNode);
                 
                 roomDiv.appendChild(image);
@@ -73,27 +85,23 @@ function autocompleteRoomsList(hotel) {
                 roomDiv.appendChild(bookingButton);
                 
                 listRooms.appendChild(roomDiv);
-                
-                
-                
-                
+               
             }    
         }   
     });
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+function removeAllRooms() {
+    let rooms = document.getElementsByClassName("room");
+    for (var i = 0; i < rooms.length; i++) {
+        rooms[i].parentNode.removeChild(rooms[i]);
+        console.log(i);
+    }
+    
+    
+    
+}
 
 
 

@@ -131,9 +131,14 @@
   color: white;
   cursor: pointer;
   padding: 0;
-  background-color: #57af36;
   font-size: 27px;
   padding: 0 10px;
+}
+* body div#content div#listRooms div#typeRoomConfiguration span:active {
+  background-color: #57af36;
+}
+* body div#content div#listRooms div#typeRoomConfiguration span:not(.active) {
+  background-color: red;
 }
 * body div#content div#listRooms div#typeRoomConfiguration span:not(:last-child) {
   border-right: 1px solid #0896ff;

@@ -48,9 +48,17 @@
 						color: white;
 						cursor: pointer;
 						padding: 0;
-						background-color: @green;
 						font-size: 27px;
 						padding: 0 10px;
+
+						&:active {
+							background-color: @green;
+						}
+
+						&:not(.active) {
+							background-color: red;
+						}
+
 					}
 					span:not(:last-child) {
 						border-right: 1px solid @blue;

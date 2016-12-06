@@ -74,8 +74,21 @@ insert into "R_Hotel_TypeRoom"("idhotel","idtyperoom","numroomsavailable","price
 
 SELECT "Hotel".name as "hotelName","TypeRoom".name as "typeroom", "R_Hotel_TypeRoom".id, "R_Hotel_TypeRoom".idHotel,"R_Hotel_TypeRoom".idTypeRoom, "R_Hotel_TypeRoom".numroomsavailable, "R_Hotel_TypeRoom".price FROM "Hotel" INNER JOIN ("R_Hotel_TypeRoom" INNER JOIN "TypeRoom" ON "R_Hotel_TypeRoom".idtyperoom="TypeRoom".id) ON ("Hotel".id="R_Hotel_TypeRoom".idhotel);
 
-("R_Hotel_TypeRoom" INNER JOIN "TypeRoom" ON "R_Hotel_TypeRoom".idtyperoom="TypeRoom".id) 
+("R_Hotel_TypeRoom" INNER JOIN "TypeRoom" ON "R_Hotel_TypeRoom".idtyperoom="TypeRoom".id)
 
+DROP TABLE "Marketing";
+
+CREATE TABLE IF NOT EXISTS "Marketing" (
+	id SERIAL PRIMARY KEY,
+	namePage VARCHAR(50),
+	title VARCHAR(50),
+	keywords VARCHAR(50),
+	description VARCHAR(50),
+	language VARCHAR(50),
+	visited integer
+	);
+
+insert into "Marketing"(namepage, title, keywords, description, language, visited) values ('rooms.jsp', 'Rooms Page','Booking,rooms,hotel', 'Booking a room', 'spanish', 0);
 
 
 

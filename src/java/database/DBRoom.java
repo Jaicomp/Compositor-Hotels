@@ -48,6 +48,31 @@ public class DBRoom {
         
     }
     
+        public ArrayList<Room> getRoomsFromHotel(String hotel) {
+        ArrayList<Room> rooms = new ArrayList<Room>();
+        try{
+           
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT \"Hotel\".name as \"hotelName\",\"TypeRoom\".name as \"typeroom\", \"R_Hotel_TypeRoom\".id, \"R_Hotel_TypeRoom\".idHotel,\"R_Hotel_TypeRoom\".idTypeRoom, \"R_Hotel_TypeRoom\".numroomsavailable, \"R_Hotel_TypeRoom\".price FROM \"Hotel\" INNER JOIN (\"R_Hotel_TypeRoom\" INNER JOIN \"TypeRoom\" ON \"R_Hotel_TypeRoom\".idtyperoom=\"TypeRoom\".id) ON (\"Hotel\".id=\"R_Hotel_TypeRoom\".idhotel) WHERE \"Hotel\"=" + hotel + "");
+            while (resultSet.next()) {
+            
+                int id = resultSet.getInt("id");
+                String nameHotel = accessDB.toUtf8(resultSet.getString("hotelName"));
+                String typeRoom = accessDB.toUtf8(resultSet.getString("typeroom"));
+                int numRoomsAvailable = resultSet.getInt("numroomsavailable");
+                int price = resultSet.getInt("price");
+                Room room = new Room(id, nameHotel, typeRoom, numRoomsAvailable, price);
+                rooms.add(room);
+            }
+        }catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return rooms;
+        
+    }
+    
+    
+    
     public ArrayList<Room> getTypeRooms() {
         ArrayList<Room> rooms = new ArrayList<Room>();
         try{

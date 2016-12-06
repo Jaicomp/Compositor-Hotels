@@ -61,8 +61,17 @@ public class AutocompleteRoomsList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ArrayList<Room> rooms = new DBRoom().getRooms();
+        ArrayList<Room> rooms = null;
         StringBuffer pageContentInXML = new StringBuffer();
+        String hotel = request.getParameter("hotel");
+        if(hotel.equals("All")){
+            
+        
+            rooms = new DBRoom().getRooms();
+        } else {
+            rooms = new DBRoom().getRoomsFromHotel(hotel);
+        }
+     
         
         for (int i = 0; i < rooms.size(); i++) {
             
