@@ -1,0 +1,26 @@
+* body h1 {
+  text-align: center;
+  color: #0896ff;
+}
+* body div#listHeaders {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+}
+* body div#listHeaders div.header {
+  width: 200px;
+  float: left;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 1px;
+}
+* body div#listHeaders div.header div {
+  padding: 5px;
+}
+* body div#listHeaders div.header div.namePage span {
+  font-weight: bold;
+}
+* body div#listHeaders div.header div input {
+  width: 100%;
+}

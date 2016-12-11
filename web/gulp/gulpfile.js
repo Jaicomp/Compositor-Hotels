@@ -11,6 +11,7 @@ gulp.task('default', function() {
 gulp.task('less', function() {
 	return gulp.src(['../assets/styles/less/landing.less',
 	'../assets/styles/less/main.less',
+	'../assets/styles/less/marketing.less'
 	])
 		.pipe(less())
 		.pipe(gulp.dest('../assets/styles/css'));

@@ -51,7 +51,7 @@
 						font-size: 27px;
 						padding: 0 10px;
 
-						&:active {
+						&.active {
 							background-color: @green;
 						}
 
@@ -73,6 +73,11 @@
 					border: 1px solid grey;
 					margin-top: 10px;
 					border-radius: 5px;
+
+					&:not(.visible) {
+						display: none;
+					}
+
 
 					img.imageRoom {
 						position: absolute;

@@ -29,13 +29,14 @@
         <jsp:useBean id="marketingDB" class="database.DBMarketing" scope="request" />
         
         <%
-            
             Header header = marketingDB.getHeaderInfoFromPage(request.getServletPath().replace("/", ""));
             
+            out.println("<meta name=\"title\" content="+ header.getTitle()+"/>");
             out.println("<meta name=\"description\" content="+ header.getDescription() +"/>");
             out.println("<meta name=\"keywords\" content="+ header.getKeywords()+"/>");
             out.println("<meta name=\"language\" content="+ header.getLanguage()+"/>");
             
+            marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
 
         %>
         
@@ -83,7 +84,7 @@
                         out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
 
                     }
-
+                    
                 %>
 
                 </select>
@@ -156,17 +157,18 @@
                         %>
                         <script>
                             function changeActiveClass(obj) {
-                                obj.classList.toggle("active");
-                                /*
-                                let notFountActiveClass = obj.getAttribute("class").search("active") == -1;
                                 
                                 let rooms = document.getElementsByClassName("room");
-                                for (let i = 0; i < rooms.lenght; i++) {
-                                    if(rooms[i].getAttribute("typeRoom").search(obj.innerHTML) != -1) {
-                                        rooms[i].classList.toggle("visible");
+                                obj.classList.toggle("active");
+                                
+                                for (let i = 0; i < rooms.length; i++) {
+                                        if(rooms[i].getAttribute("typeRoom") == obj.innerHTML) {
+                                            rooms[i].classList.toggle("visible");
+                                        }
                                     }
-                                }
-                                */
+                                
+                                
+                                
                             }
                             
                             

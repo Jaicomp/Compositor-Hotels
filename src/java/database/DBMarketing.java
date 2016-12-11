@@ -29,20 +29,18 @@ public class DBMarketing {
         Header header = null;
         try {
             //ResultSet resultSet = accessDB.executeSQLStatement("SELECT * FROM \"Marketing\" WHERE namepage = '" + namePage + "';");
-            ResultSet resultSet = accessDB.executeSQLStatement("SELECT * FROM \"Marketing\" WHERE namepage='rooms.jsp';");
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT * FROM \"Marketing\" WHERE \"namepage\"='" + namePage + "';");
             
-            if (resultSet.isFirst() ){
+            
+            while(resultSet.next()){
                 int id = resultSet.getInt("id");
+                String name = accessDB.toUtf8(resultSet.getString("namePage"));
+                String title = accessDB.toUtf8(resultSet.getString("title"));
+                String keywords = accessDB.toUtf8(resultSet.getString("keywords"));
+                String description = accessDB.toUtf8(resultSet.getString("description"));
+                String language = accessDB.toUtf8(resultSet.getString("language"));
+                header = new Header(id, name, title,keywords,description,language);
             }
-            
-//          String name = accessDB.toUtf8(resultSet.getString("namePage"));
-//            String title = accessDB.toUtf8(resultSet.getString("title"));
-//            String keywords = accessDB.toUtf8(resultSet.getString("keywords"));
-//            String description = accessDB.toUtf8(resultSet.getString("description"));
-//            String language = accessDB.toUtf8(resultSet.getString("language"));
-//
-//            header = new Header(id, name, title,keywords,description,language);
-            header = new Header(1, "N", "T","K",namePage,"L");
             
         } catch (SQLException ex) {
             Logger.getLogger(DBMarketing.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,4 +48,50 @@ public class DBMarketing {
         
         return header;
     }
+    
+    public void increaseOneVisitOnPage(String namePage) {
+        
+        try {
+            
+            accessDB.executeSQLStatement("UPDATE \"Marketing\" SET visited = visited + 1 WHERE namepage='" + namePage + "';");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBMarketing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public ArrayList<Header> getHeaders() {
+        
+        ArrayList<Header> headers = new ArrayList<Header>();
+        
+        try {
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT * FROM \"Marketing\";");
+            
+            while(resultSet.next()) {
+                Header header;
+                
+                int id = resultSet.getInt("id");
+                String name = accessDB.toUtf8(resultSet.getString("namePage"));
+                String title = accessDB.toUtf8(resultSet.getString("title"));
+                String keywords = accessDB.toUtf8(resultSet.getString("keywords"));
+                String description = accessDB.toUtf8(resultSet.getString("description"));
+                String language = accessDB.toUtf8(resultSet.getString("language"));
+                int visits = resultSet.getInt("visited");
+                
+                header = new Header(id, name, title,keywords,description,language, visits);
+                
+                headers.add(header);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBMarketing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return headers;
+        
+    }
+    
+    
+    
 }

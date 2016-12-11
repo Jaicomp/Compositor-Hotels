@@ -134,7 +134,7 @@
   font-size: 27px;
   padding: 0 10px;
 }
-* body div#content div#listRooms div#typeRoomConfiguration span:active {
+* body div#content div#listRooms div#typeRoomConfiguration span.active {
   background-color: #57af36;
 }
 * body div#content div#listRooms div#typeRoomConfiguration span:not(.active) {
@@ -150,6 +150,9 @@
   border: 1px solid grey;
   margin-top: 10px;
   border-radius: 5px;
+}
+* body div#content div#listRooms div.room:not(.visible) {
+  display: none;
 }
 * body div#content div#listRooms div.room img.imageRoom {
   position: absolute;

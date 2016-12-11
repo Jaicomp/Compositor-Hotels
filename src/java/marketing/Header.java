@@ -17,7 +17,7 @@ public class Header {
     private String keywords;
     private String description;
     private String language;
-    private int visited;
+    private int visits;
     
     public Header(int id, String namePage, String title, String keywords, String description, String language) {
         this.id = id;
@@ -26,9 +26,19 @@ public class Header {
         this.keywords = keywords;
         this.description = description;
         this.language = language;
-        this.visited = 0;
+        this.visits = 0;
     }
 
+    public Header(int id, String namePage, String title, String keywords, String description, String language, int visits) {
+        this.id = id;
+        this.namePage = namePage;
+        this.title = title;
+        this.keywords = keywords;
+        this.description = description;
+        this.language = language;
+        this.visits = visits;
+    }
+    
     public int getId() {
         return id;
     }
@@ -54,7 +64,7 @@ public class Header {
     }
 
     public int getVisited() {
-        return visited;
+        return visits;
     }
     
     

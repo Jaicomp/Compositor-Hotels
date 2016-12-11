@@ -24,7 +24,7 @@ function autocompleteRoomsList() {
     
     sendRequest(request,function(responseXML) {
         
-        removeAllRooms();
+        //removeAllRooms();
         
         let rooms = responseXML.getElementsByTagName("rooms")[0];
         
@@ -40,7 +40,9 @@ function autocompleteRoomsList() {
                 let price = room.getElementsByTagName("price")[0];
                
                 let roomDiv = document.createElement("div");
-                roomDiv.setAttribute('class','room');
+                roomDiv.setAttribute('class','room visible'); + 
+                roomDiv.setAttribute('typeRoom',typeRoom.childNodes[0].nodeValue);
+                
                 
                 let image = document.createElement("img");
                 image.setAttribute("class", "imageRoom");

@@ -29,13 +29,14 @@
         <jsp:useBean id="marketingDB" class="database.DBMarketing" scope="request" />
         
         <%
-            
             Header header = marketingDB.getHeaderInfoFromPage(request.getServletPath().replace("/", ""));
             
+            out.println("<meta name=\"title\" content="+ header.getTitle()+"/>");
             out.println("<meta name=\"description\" content="+ header.getDescription() +"/>");
             out.println("<meta name=\"keywords\" content="+ header.getKeywords()+"/>");
             out.println("<meta name=\"language\" content="+ header.getLanguage()+"/>");
             
+            marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
 
         %>
         
@@ -83,7 +84,7 @@
                         out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
 
                     }
-
+                    
                 %>
 
                 </select>
@@ -156,7 +157,18 @@
                         %>
                         <script>
                             function changeActiveClass(obj) {
+                                
+                                let rooms = document.getElementsByClassName("room");
                                 obj.classList.toggle("active");
+                                
+                                for (let i = 0; i < rooms.length; i++) {
+                                        if(rooms[i].getAttribute("typeRoom") == obj.innerHTML) {
+                                            rooms[i].classList.toggle("visible");
+                                        }
+                                    }
+                                
+                                
+                                
                             }
                             
                             
@@ -182,7 +194,7 @@
                 %>
                 -->
                 
-               
+               <!--
                 <div class="room">
                     <img class="imageRoom"src="http://www.srisrivaastu.com/image/peh-superior-room.jpg"
                          alt="room" width="200" height="200" >
@@ -192,7 +204,7 @@
                     <div class="numberOfRoomsAvailable">Habitaciones disponibles: 50</div>
                     <button class="bookingButton">Reservar habitación ➤</button>
                 </div>
-               
+               -->
             
             </div>
         </div>

@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS "Marketing" (
 
 insert into "Marketing"(namepage, title, keywords, description, language, visited) values ('rooms.jsp', 'Rooms Page','Booking,rooms,hotel', 'Booking a room', 'spanish', 0);
 
-
+insert into "Marketing"(namepage, title, keywords, description, language, visited) values ('marketing.jsp', 'Marketing Page','Booking,marketing,hotel', 'Status page', 'spanish', 0);
 
 
 

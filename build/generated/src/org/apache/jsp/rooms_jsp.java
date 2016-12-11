@@ -114,9 +114,12 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
             
             Header header = marketingDB.getHeaderInfoFromPage(request.getServletPath().replace("/", ""));
             
+            out.println("<meta name=\"title\" content="+ header.getTitle()+"/>");
             out.println("<meta name=\"description\" content="+ header.getDescription() +"/>");
             out.println("<meta name=\"keywords\" content="+ header.getKeywords()+"/>");
             out.println("<meta name=\"language\" content="+ header.getLanguage()+"/>");
+            
+            marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
             
 
         
@@ -254,7 +257,18 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                        <script>\n");
       out.write("                            function changeActiveClass(obj) {\n");
+      out.write("                                \n");
+      out.write("                                let rooms = document.getElementsByClassName(\"room\");\n");
       out.write("                                obj.classList.toggle(\"active\");\n");
+      out.write("                                \n");
+      out.write("                                for (let i = 0; i < rooms.length; i++) {\n");
+      out.write("                                        if(rooms[i].getAttribute(\"typeRoom\") == obj.innerHTML) {\n");
+      out.write("                                            rooms[i].classList.toggle(\"visible\");\n");
+      out.write("                                        }\n");
+      out.write("                                    }\n");
+      out.write("                                \n");
+      out.write("                                \n");
+      out.write("                                \n");
       out.write("                            }\n");
       out.write("                            \n");
       out.write("                            \n");
@@ -282,7 +296,7 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                -->\n");
       out.write("                \n");
-      out.write("               \n");
+      out.write("               <!--\n");
       out.write("                <div class=\"room\">\n");
       out.write("                    <img class=\"imageRoom\"src=\"http://www.srisrivaastu.com/image/peh-superior-room.jpg\"\n");
       out.write("                         alt=\"room\" width=\"200\" height=\"200\" >\n");
@@ -294,7 +308,7 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <div class=\"numberOfRoomsAvailable\">Habitaciones disponibles: 50</div>\n");
       out.write("                    <button class=\"bookingButton\">Reservar habitación ➤</button>\n");
       out.write("                </div>\n");
-      out.write("               \n");
+      out.write("               -->\n");
       out.write("            \n");
       out.write("            </div>\n");
       out.write("        </div>\n");
