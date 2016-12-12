@@ -4,9 +4,17 @@
         <servlet-name>AutocompleteRoomsList</servlet-name>
         <servlet-class>ajaxPages.AutocompleteRoomsList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateMetaTag</servlet-name>
+        <servlet-class>ajaxPages.UpdateMetaTag</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AutocompleteRoomsList</servlet-name>
         <url-pattern>/AutocompleteRoomsList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMetaTag</servlet-name>
+        <url-pattern>/UpdateMetaTag</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

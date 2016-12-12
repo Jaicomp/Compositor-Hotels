@@ -16,9 +16,9 @@ function autocompleteRoomsList() {
     removeAllRooms();
     
     let request = {
-	method: "GET",
-	url: "AutocompleteRoomsList?hotel="+hotelName,
-	isAsynchronous: true
+			method: "GET",
+			url: "AutocompleteRoomsList?hotel="+hotelName,
+			isAsynchronous: true
     }
     
     

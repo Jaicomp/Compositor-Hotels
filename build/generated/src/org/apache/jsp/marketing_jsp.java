@@ -58,6 +58,14 @@ public final class marketing_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"");
       out.print( request.getContextPath() );
       out.write("/assets/styles/css/marketing.css\">\n");
+      out.write("        \n");
+      out.write("        <!-- JS -->\n");
+      out.write("        <script src=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/js/ajax.js\"></script>\n");
+      out.write("        <script src=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/js/updateMetaTag.js\"></script>\n");
       out.write("       \n");
       out.write("        <!-- Beans -->\n");
       out.write("        ");
@@ -89,53 +97,71 @@ public final class marketing_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <body>\n");
       out.write("        \n");
       out.write("        <h1> Marketing </h1>\n");
-      out.write("        \n");
+      out.write("        <div id=\"listHeaders\">\n");
       out.write("        ");
 
            ArrayList<Header> headers = marketingDB.getHeaders();
            for (int i = 0; i < headers.size(); i++) {
-                   //out.println(headers.get(i).getId());
+                   out.println("<div class=\"header\" page=\"" + headers.get(i).getNamePage() + "\">");
+                   
+                   out.println("<div class=\"namePage\" page=\"rooms.jsp\">");
+                   out.println("<span>Name's page: </span>"+headers.get(i).getNamePage());
+                   out.println("</div>");
+                   
+                   out.println("<div class=\"title\">");
+                   out.println("<span>Title: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"title\" value=\"" + headers.get(i).getTitle() + "\" />");
+                   out.println("</div>");
+                   
+                   out.println("<div class=\"description\">");
+                   out.println("<span>Description: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"description\" value=\"" + headers.get(i).getDescription()+ "\" />");
+                   out.println("</div>");
+                   
+                   out.println("<div class=\"keywords\">");
+                   out.println("<span>Keywords: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"keywords\" value=\"" + headers.get(i).getKeywords()+ "\" />");
+                   out.println("</div>");
+                   
+                   out.println("<div class=\"language\">");
+                   out.println("<span>Language: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"language\" value=\"" + headers.get(i).getLanguage()+ "\" />");
+                   out.println("</div>");
+                   
+                   out.println("<div class=\"visits\">");
+                   out.println("<span>Visits: </span>"+headers.get(i).getVisited());
+                   out.println("</div>");
+                   
+                   out.println("</div>");
                }
             
             
         
       out.write("\n");
+      out.write("        </div>\n");
       out.write("        \n");
-      out.write("        \n");
-      out.write("        <div id=\"listHeaders\">\n");
-      out.write("            <div class=\"header\">\n");
-      out.write("                <div class=\"namePage\">\n");
+      out.write(" <!--\n");
+      out.write("            <div class=\"header\" page=\"rooms.jsp\">\n");
+      out.write("                <div class=\"namePage\" >\n");
       out.write("                    <span>Name's page: </span>rooms.jsp\n");
       out.write("                </div>\n");
       out.write("                <div class=\"title\">\n");
-      out.write("                    <span>Title: </span><input type=\"text\" value=\"Rooms page\" />\n");
+      out.write("                    <span>Title: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"title\" value=\"Rooms page\" />\n");
       out.write("                </div>\n");
       out.write("                <div class=\"description\">\n");
-      out.write("                    <span>Description: </span><input type=\"text\" value=\"Booking a room\" />\n");
+      out.write("                    <span>Description: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"description\" value=\"Booking a room\" />\n");
       out.write("                </div>\n");
       out.write("                <div class=\"keywords\">\n");
-      out.write("                    <span>Keywords: </span><input type=\"text\" value=\"Booking, rooms, hotel\" />\n");
+      out.write("                    <span>Keywords: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"keywords\" value=\"Booking, rooms, hotel\" />\n");
       out.write("                </div>\n");
       out.write("                <div class=\"language\">\n");
-      out.write("                    <span>Language: </span><input type=\"text\" value=\"spanish\" />\n");
+      out.write("                    <span>Language: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"language\" value=\"spanish\" />\n");
       out.write("                </div>\n");
       out.write("                <div class=\"visits\">\n");
       out.write("                    <span>Visits: </span>7\n");
       out.write("                </div>\n");
       out.write("             \n");
       out.write("            </div>\n");
-      out.write("            \n");
+      out.write("       \n");
       out.write("            \n");
       out.write("        </div>\n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("        \n");
+      out.write("         -->    \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

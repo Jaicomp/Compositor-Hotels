@@ -9,7 +9,9 @@ function sendRequest(request, callback) {
     
     requestAjax.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+					if (typeof callback !== "undefined") {
                 callback(requestAjax.responseXML);
+					}
         }
     }
     requestAjax.send();

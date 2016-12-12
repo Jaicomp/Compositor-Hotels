@@ -34,7 +34,7 @@ public class DBMarketing {
             
             while(resultSet.next()){
                 int id = resultSet.getInt("id");
-                String name = accessDB.toUtf8(resultSet.getString("namePage"));
+                String name = accessDB.toUtf8(resultSet.getString("namepage"));
                 String title = accessDB.toUtf8(resultSet.getString("title"));
                 String keywords = accessDB.toUtf8(resultSet.getString("keywords"));
                 String description = accessDB.toUtf8(resultSet.getString("description"));
@@ -92,6 +92,13 @@ public class DBMarketing {
         
     }
     
+    public void updateMetaTag(String namePage, String metaTag, String valueTag) {
+        try {
+            accessDB.executeSQLStatement("UPDATE \"Marketing\" SET " + metaTag + "='" + valueTag + "' WHERE namepage='" + namePage +  "';");
+                    } catch (SQLException ex) {
+            Logger.getLogger(DBMarketing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     
 }

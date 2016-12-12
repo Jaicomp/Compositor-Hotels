@@ -15,6 +15,10 @@
         
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/styles/css/marketing.css">
+        
+        <!-- JS -->
+        <script src="<%= request.getContextPath() %>/assets/js/ajax.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/updateMetaTag.js"></script>
        
         <!-- Beans -->
         <jsp:useBean id="marketingDB" class="database.DBMarketing" scope="request" />
@@ -35,50 +39,42 @@
     <body>
         
         <h1> Marketing </h1>
-        
+        <div id="listHeaders">
         <%
            ArrayList<Header> headers = marketingDB.getHeaders();
            for (int i = 0; i < headers.size(); i++) {
-                   //out.println(headers.get(i).getId());
+                   out.println("<div class=\"header\" page=\"" + headers.get(i).getNamePage() + "\">");
+                   
+                   out.println("<div class=\"namePage\" page=\"rooms.jsp\">");
+                   out.println("<span>Name's page: </span>"+headers.get(i).getNamePage());
+                   out.println("</div>");
+                   
+                   out.println("<div class=\"title\">");
+                   out.println("<span>Title: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"title\" value=\"" + headers.get(i).getTitle() + "\" />");
+                   out.println("</div>");
+                   
+                   out.println("<div class=\"description\">");
+                   out.println("<span>Description: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"description\" value=\"" + headers.get(i).getDescription()+ "\" />");
+                   out.println("</div>");
+                   
+                   out.println("<div class=\"keywords\">");
+                   out.println("<span>Keywords: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"keywords\" value=\"" + headers.get(i).getKeywords()+ "\" />");
+                   out.println("</div>");
+                   
+                   out.println("<div class=\"language\">");
+                   out.println("<span>Language: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"language\" value=\"" + headers.get(i).getLanguage()+ "\" />");
+                   out.println("</div>");
+                   
+                   out.println("<div class=\"visits\">");
+                   out.println("<span>Visits: </span>"+headers.get(i).getVisited());
+                   out.println("</div>");
+                   
+                   out.println("</div>");
                }
             
             
         %>
-        
-        
-        <div id="listHeaders">
-            <div class="header">
-                <div class="namePage">
-                    <span>Name's page: </span>rooms.jsp
-                </div>
-                <div class="title">
-                    <span>Title: </span><input type="text" maxlength="50" value="Rooms page" />
-                </div>
-                <div class="description">
-                    <span>Description: </span><input type="text" maxlength="50" value="Booking a room" />
-                </div>
-                <div class="keywords">
-                    <span>Keywords: </span><input type="text" maxlength="50" value="Booking, rooms, hotel" />
-                </div>
-                <div class="language">
-                    <span>Language: </span><input type="text" maxlength="50" value="spanish" />
-                </div>
-                <div class="visits">
-                    <span>Visits: </span>7
-                </div>
-             
-            </div>
-            
-            
         </div>
-        
-        
-        
-        
-        
-        
-        
-        
         
     </body>
 </html>

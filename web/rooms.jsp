@@ -18,7 +18,7 @@
         
         <!-- JS -->
         <script src="<%= request.getContextPath() %>/assets/js/ajax.js"></script>
-        <script src="<%= request.getContextPath() %>/assets/js/autocompleteroomslist.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/autocompleteRoomsList.js"></script>
         
         <!-- CDN -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
