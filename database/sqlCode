@@ -8,8 +8,10 @@ DROP TABLE "R_Booking_TypeRoom";
 
 CREATE TABLE IF NOT EXISTS "Client" (
 	id serial primary key,
-	firstName varchar(30),
-	lastName varchar(30),
+	username varchar(50),
+	password varchar(50),
+	firstName varchar(50),
+	lastName varchar(50),
 	email varchar(50)
 );
 
@@ -36,7 +38,7 @@ insert into "TypeRoom"("name", "description") values ('Doble Vista Mar', 'For tw
 insert into "TypeRoom"("name", "description") values ('Individual', 'For a person');
 
 
-CREATE TABLE IF NOT EXISTS"Booking" (
+CREATE TABLE IF NOT EXISTS "Booking" (
 	id serial primary key,
 	adult int2,
 	smallers int2,
@@ -92,6 +94,9 @@ insert into "Marketing"(namepage, title, keywords, description, language, visite
 
 insert into "Marketing"(namepage, title, keywords, description, language, visited) values ('marketing.jsp', 'Marketing Page','Booking,marketing,hotel', 'Status page', 'spanish', 0);
 
+insert into "Marketing"(namepage, title, keywords, description, language, visited) values ('reservation.jsp', 'Reservation Page','Booking,reservation,hotel', 'Reservation a room', 'spanish', 0);
+
+insert into "Marketing"(namepage, title, keywords, description, language, visited) values ('tribago.jsp', 'Booking','Tribago,reservation,hotel', 'See avaliable room', 'spanish', 0);
 
 
 

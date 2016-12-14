@@ -132,7 +132,7 @@
                 </table>
 
                 <button onclick="autocompleteRoomsList()">Search</button>
-
+                
                 
             </div>
             <div id="listRooms">

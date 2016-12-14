@@ -72,7 +72,7 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("/assets/js/ajax.js\"></script>\n");
       out.write("        <script src=\"");
       out.print( request.getContextPath() );
-      out.write("/assets/js/autocompleteroomslist.js\"></script>\n");
+      out.write("/assets/js/autocompleteRoomsList.js\"></script>\n");
       out.write("        \n");
       out.write("        <!-- CDN -->\n");
       out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>\n");
@@ -111,7 +111,6 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        \n");
       out.write("        ");
 
-            
             Header header = marketingDB.getHeaderInfoFromPage(request.getServletPath().replace("/", ""));
             
             out.println("<meta name=\"title\" content="+ header.getTitle()+"/>");
@@ -120,7 +119,6 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
             out.println("<meta name=\"language\" content="+ header.getLanguage()+"/>");
             
             marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
-            
 
         
       out.write("\n");
@@ -177,7 +175,7 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
                         out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
 
                     }
-
+                    
                 
       out.write("\n");
       out.write("\n");
@@ -230,7 +228,7 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </table>\n");
       out.write("\n");
       out.write("                <button onclick=\"autocompleteRoomsList()\">Search</button>\n");
-      out.write("\n");
+      out.write("                \n");
       out.write("                \n");
       out.write("            </div>\n");
       out.write("            <div id=\"listRooms\">\n");

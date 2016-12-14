@@ -51,9 +51,6 @@ public final class marketing_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Marketing</title>\n");
-      out.write("        \n");
       out.write("        <!-- Styles -->\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"");
       out.print( request.getContextPath() );
@@ -78,6 +75,21 @@ public final class marketing_jsp extends org.apache.jasper.runtime.HttpJspBase
         }
       }
       out.write("\n");
+      out.write("        \n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <title>Compositor Hotels</title>\n");
+      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon-32x32.png\">\n");
+      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon-96x96.png\">\n");
+      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon-16x16.png\">\n");
+      out.write("        <link rel=\"shortcut icon\" type=\"image/x-icon\" sizes=\"16x16\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon.ico\">\n");
       out.write("        \n");
       out.write("        \n");
       out.write("        ");
@@ -105,7 +117,7 @@ public final class marketing_jsp extends org.apache.jasper.runtime.HttpJspBase
                    out.println("<div class=\"header\" page=\"" + headers.get(i).getNamePage() + "\">");
                    
                    out.println("<div class=\"namePage\" page=\"rooms.jsp\">");
-                   out.println("<span>Name's page: </span>"+headers.get(i).getNamePage());
+                   out.println("<h1>" + headers.get(i).getNamePage() + "</h1>");
                    out.println("</div>");
                    
                    out.println("<div class=\"title\">");
@@ -136,32 +148,6 @@ public final class marketing_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        </div>\n");
       out.write("        \n");
-      out.write(" <!--\n");
-      out.write("            <div class=\"header\" page=\"rooms.jsp\">\n");
-      out.write("                <div class=\"namePage\" >\n");
-      out.write("                    <span>Name's page: </span>rooms.jsp\n");
-      out.write("                </div>\n");
-      out.write("                <div class=\"title\">\n");
-      out.write("                    <span>Title: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"title\" value=\"Rooms page\" />\n");
-      out.write("                </div>\n");
-      out.write("                <div class=\"description\">\n");
-      out.write("                    <span>Description: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"description\" value=\"Booking a room\" />\n");
-      out.write("                </div>\n");
-      out.write("                <div class=\"keywords\">\n");
-      out.write("                    <span>Keywords: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"keywords\" value=\"Booking, rooms, hotel\" />\n");
-      out.write("                </div>\n");
-      out.write("                <div class=\"language\">\n");
-      out.write("                    <span>Language: </span><input onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"language\" value=\"spanish\" />\n");
-      out.write("                </div>\n");
-      out.write("                <div class=\"visits\">\n");
-      out.write("                    <span>Visits: </span>7\n");
-      out.write("                </div>\n");
-      out.write("             \n");
-      out.write("            </div>\n");
-      out.write("       \n");
-      out.write("            \n");
-      out.write("        </div>\n");
-      out.write("         -->    \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

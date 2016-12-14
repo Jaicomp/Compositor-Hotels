@@ -96,6 +96,7 @@ function autocompleteRoomsList() {
 
 function removeAllRooms() {
     let rooms = document.getElementsByClassName("room");
+    console.log("Number of rooms: "+rooms.length)
     for (var i = 0; i < rooms.length; i++) {
         rooms[i].parentNode.removeChild(rooms[i]);
         console.log(i);

@@ -18,7 +18,8 @@
 * body div#listHeaders div.header div {
   padding: 5px;
 }
-* body div#listHeaders div.header div.namePage span {
+* body div#listHeaders div.header div span {
+  font-size: 20px;
   font-weight: bold;
 }
 * body div#listHeaders div.header div input {

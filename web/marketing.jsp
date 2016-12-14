@@ -10,9 +10,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Marketing</title>
-        
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/styles/css/marketing.css">
         
@@ -22,6 +19,13 @@
        
         <!-- Beans -->
         <jsp:useBean id="marketingDB" class="database.DBMarketing" scope="request" />
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Compositor Hotels</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-16x16.png">
+        <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon.ico">
         
         
         <%
@@ -46,7 +50,7 @@
                    out.println("<div class=\"header\" page=\"" + headers.get(i).getNamePage() + "\">");
                    
                    out.println("<div class=\"namePage\" page=\"rooms.jsp\">");
-                   out.println("<span>Name's page: </span>"+headers.get(i).getNamePage());
+                   out.println("<h1>" + headers.get(i).getNamePage() + "</h1>");
                    out.println("</div>");
                    
                    out.println("<div class=\"title\">");

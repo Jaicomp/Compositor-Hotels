@@ -19,6 +19,13 @@
 * body header nav span.whitespace {
   padding-left: 10px;
 }
+* body header nav h1 {
+  display: block;
+  text-align: center;
+  padding-left: -5px;
+  font-size: 40px;
+  color: #bba86d;
+}
 * body header nav ul {
   float: right;
   padding-top: 25px;
