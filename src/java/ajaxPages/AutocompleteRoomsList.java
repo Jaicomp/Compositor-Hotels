@@ -66,17 +66,16 @@ public class AutocompleteRoomsList extends HttpServlet {
         String hotel = request.getParameter("hotel");
         if(hotel.equals("All")){
             
-        
             rooms = new DBRoom().getRooms();
         } else {
             rooms = new DBRoom().getRoomsFromHotel(hotel);
         }
-     
+        
         
         for (int i = 0; i < rooms.size(); i++) {
             
             pageContentInXML.append("<room>");
-            pageContentInXML.append("<id>" + rooms.get(i).getId() + "</id>");
+            pageContentInXML.append("<idRoom>" + rooms.get(i).getIdRoom()+ "</idRoom>");
             pageContentInXML.append("<hotel>" + rooms.get(i).getHotelName()+ "</hotel>");
             pageContentInXML.append("<typeRoom>" + rooms.get(i).getTypeRoom()+ "</typeRoom>");
             pageContentInXML.append("<numRoomsAvailable>" + rooms.get(i).getNumRoomsAvailable()+ "</numRoomsAvailable>");

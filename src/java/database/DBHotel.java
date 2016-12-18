@@ -43,6 +43,25 @@ public class DBHotel {
         
     }
     
-
+    public String getNameHotelFromHotelId(String idHotel) {
+        
+        String nameHotel = "";
+        try {
+            
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT name FROM \"Hotel\" WHERE id="+idHotel);
+            while (resultSet.next()) {
+            
+                nameHotel = accessDB.toUtf8(resultSet.getString("name"));
+                
+            }
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        return nameHotel;
+        
+    }
+    
     
 }

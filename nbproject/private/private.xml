@@ -6,10 +6,9 @@
             <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/rooms.jsp</file>
             <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/assets/js/autocompleteRoomsList.js</file>
             <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/reservation.jsp</file>
-            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/marketing.jsp</file>
+            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/src/java/database/DBRoom.java</file>
+            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/src/java/ajaxPages/AutocompleteRoomsList.java</file>
             <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/src/java/database/DBClient.java</file>
-            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/tribago.jsp</file>
-            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/src/java/database/DBHotel.java</file>
         </group>
     </open-files>
 </project-private>

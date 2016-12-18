@@ -15,7 +15,6 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
             public static final int MAXNUMADULTS = 10;
             public static final int MAXNUMCHILDREN = 10;
         
-        
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
@@ -173,7 +172,6 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
 
                     for (int i = 0; i < hotels.size(); i++) {
                         out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
-
                     }
                     
                 
@@ -182,9 +180,9 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </select>\n");
       out.write("                <br>\n");
       out.write("                Check-in<br>\n");
-      out.write("                <input type=\"date\" name=\"checkindate\" min=\"2016-11-21\" max=\"2018-01-01\" required /><br>\n");
+      out.write("                <input type=\"date\" id=\"entryDate\" name=\"checkindate\" min=\"2016-11-21\" max=\"2018-01-01\" required /><br>\n");
       out.write("                Check-out<br>\n");
-      out.write("                <input type=\"date\" name=\"checkoutdate\" min=\"2016-11-21\" max=\"2018-01-01\" required /><br>\n");
+      out.write("                <input type=\"date\" id=\"departureDate\" name=\"checkoutdate\" min=\"2016-11-21\" max=\"2018-01-01\" required /><br>\n");
       out.write("                <table>\n");
       out.write("\n");
       out.write("                    <tr>\n");
@@ -192,11 +190,10 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            Adults\n");
       out.write("                       </td>\n");
       out.write("                        <td>\n");
-      out.write("                            <select name=\"adults\">\n");
+      out.write("                            <select id=\"adults\" name=\"adults\">\n");
       out.write("                                ");
 
                                     for(int i = 1; i <= MAXNUMADULTS; i++){
-
                                         out.println("<option value="+i+">"+i+"</option>");
                                     }
 
@@ -210,11 +207,10 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            Children\n");
       out.write("                        </td>\n");
       out.write("                        <td>\n");
-      out.write("                            <select name=\"children\">\n");
+      out.write("                            <select id=\"children\" name=\"children\">\n");
       out.write("                                ");
 
                                     for(int i = 0; i <= MAXNUMCHILDREN; i++){
-
                                         out.println("<option value="+i+">"+i+"</option>");
                                     }
 
@@ -248,29 +244,27 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
                         ArrayList<Room> typeRooms = roomDB.getTypeRooms();
                         for (int i = 0; i < typeRooms.size(); i++) {
                                 out.print("<span onclick='changeActiveClass(this)' class='active'>" + typeRooms.get(i).getTypeRoom() + "</span>");
-                            }
+                        }
                         
                         
-                        
+                    
       out.write("\n");
-      out.write("                        <script>\n");
-      out.write("                            function changeActiveClass(obj) {\n");
-      out.write("                                \n");
-      out.write("                                let rooms = document.getElementsByClassName(\"room\");\n");
-      out.write("                                obj.classList.toggle(\"active\");\n");
-      out.write("                                \n");
-      out.write("                                for (let i = 0; i < rooms.length; i++) {\n");
-      out.write("                                        if(rooms[i].getAttribute(\"typeRoom\") == obj.innerHTML) {\n");
-      out.write("                                            rooms[i].classList.toggle(\"visible\");\n");
-      out.write("                                        }\n");
+      out.write("                    <script>\n");
+      out.write("                        function changeActiveClass(obj) {\n");
+      out.write("\n");
+      out.write("                            let rooms = document.getElementsByClassName(\"room\");\n");
+      out.write("                            obj.classList.toggle(\"active\");\n");
+      out.write("\n");
+      out.write("                            for (let i = 0; i < rooms.length; i++) {\n");
+      out.write("                                    if(rooms[i].getAttribute(\"typeRoom\") == obj.innerHTML) {\n");
+      out.write("                                        rooms[i].classList.toggle(\"visible\");\n");
       out.write("                                    }\n");
-      out.write("                                \n");
-      out.write("                                \n");
-      out.write("                                \n");
-      out.write("                            }\n");
-      out.write("                            \n");
-      out.write("                            \n");
-      out.write("                        </script>\n");
+      out.write("                                }\n");
+      out.write("\n");
+      out.write("                        }\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                    </script>\n");
       out.write("                </div>\n");
       out.write("                \n");
       out.write("                <!--\n");

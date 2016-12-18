@@ -29,15 +29,15 @@ public class DBRoom {
         ArrayList<Room> rooms = new ArrayList<Room>();
         try{
            
-            ResultSet resultSet = accessDB.executeSQLStatement("SELECT \"Hotel\".name as \"hotelName\",\"TypeRoom\".name as \"typeroom\", \"R_Hotel_TypeRoom\".id, \"R_Hotel_TypeRoom\".idHotel,\"R_Hotel_TypeRoom\".idTypeRoom, \"R_Hotel_TypeRoom\".numroomsavailable, \"R_Hotel_TypeRoom\".price FROM \"Hotel\" INNER JOIN (\"R_Hotel_TypeRoom\" INNER JOIN \"TypeRoom\" ON \"R_Hotel_TypeRoom\".idtyperoom=\"TypeRoom\".id) ON (\"Hotel\".id=\"R_Hotel_TypeRoom\".idhotel);");
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT \"Hotel\".name as \"hotelName\",\"TypeRoom\".name as \"typeroom\", \"R_Hotel_TypeRoom\".id as \"id\", \"R_Hotel_TypeRoom\".idHotel,\"R_Hotel_TypeRoom\".idTypeRoom, \"R_Hotel_TypeRoom\".numroomsavailable, \"R_Hotel_TypeRoom\".price FROM \"Hotel\" INNER JOIN (\"R_Hotel_TypeRoom\" INNER JOIN \"TypeRoom\" ON \"R_Hotel_TypeRoom\".idtyperoom=\"TypeRoom\".id) ON (\"Hotel\".id=\"R_Hotel_TypeRoom\".idhotel);");
             while (resultSet.next()) {
             
-                int id = resultSet.getInt("id");
+                int idHotel = resultSet.getInt("id");
                 String nameHotel = accessDB.toUtf8(resultSet.getString("hotelName"));
                 String typeRoom = accessDB.toUtf8(resultSet.getString("typeroom"));
                 int numRoomsAvailable = resultSet.getInt("numroomsavailable");
                 int price = resultSet.getInt("price");
-                Room room = new Room(id, nameHotel, typeRoom, numRoomsAvailable, price);
+                Room room = new Room(idHotel, nameHotel, typeRoom, numRoomsAvailable, price);
                 rooms.add(room);
             }
         }catch(SQLException ex) {
@@ -52,7 +52,7 @@ public class DBRoom {
         ArrayList<Room> rooms = new ArrayList<Room>();
         try{
            
-            ResultSet resultSet = accessDB.executeSQLStatement("SELECT \"Hotel\".name as \"hotelName\",\"TypeRoom\".name as \"typeroom\", \"R_Hotel_TypeRoom\".id, \"R_Hotel_TypeRoom\".idHotel,\"R_Hotel_TypeRoom\".idTypeRoom, \"R_Hotel_TypeRoom\".numroomsavailable, \"R_Hotel_TypeRoom\".price FROM \"Hotel\" INNER JOIN (\"R_Hotel_TypeRoom\" INNER JOIN \"TypeRoom\" ON \"R_Hotel_TypeRoom\".idtyperoom=\"TypeRoom\".id) ON (\"Hotel\".id=\"R_Hotel_TypeRoom\".idhotel) WHERE \"Hotel\"=" + hotel + "");
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT \"Hotel\".name as \"hotelName\",\"TypeRoom\".name as \"typeroom\", \"R_Hotel_TypeRoom\".id as \"id\", \"R_Hotel_TypeRoom\".idHotel,\"R_Hotel_TypeRoom\".idTypeRoom, \"R_Hotel_TypeRoom\".numroomsavailable, \"R_Hotel_TypeRoom\".price FROM \"Hotel\" INNER JOIN (\"R_Hotel_TypeRoom\" INNER JOIN \"TypeRoom\" ON \"R_Hotel_TypeRoom\".idtyperoom=\"TypeRoom\".id) ON (\"Hotel\".id=\"R_Hotel_TypeRoom\".idhotel) WHERE \"Hotel\".name='" + hotel + "';");
             while (resultSet.next()) {
             
                 int id = resultSet.getInt("id");
@@ -90,6 +90,69 @@ public class DBRoom {
         
         return rooms;
     }
+    
+    public String getHotelIdFromIdRoom(String idRoom) {
+        String idHotel = "";
+        try{
+           
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT idhotel FROM \"R_Hotel_TypeRoom\" WHERE id="+idRoom);
+            while (resultSet.next()) {
+            
+                idHotel = accessDB.toUtf8(resultSet.getString("idhotel"));
+                
+            }
+        }catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return idHotel;
+        
+        
+        
+    }
+    
+    
+    public String getTypeIdFromIdRoom(String idRoom) {
+        String idHotel = "";
+        try{
+           
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT idtyperoom FROM \"R_Hotel_TypeRoom\" WHERE id="+idRoom);
+            while (resultSet.next()) {
+            
+                idHotel = accessDB.toUtf8(resultSet.getString("idtyperoom"));
+                
+            }
+        }catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return idHotel;
+        
+        
+        
+    }
+            
+            
+    public String getTypeRoomFromRoomId(String idRoom) {
+    String idHotel = "";
+    try{
+
+        ResultSet resultSet = accessDB.executeSQLStatement("SELECT \"TypeRoom\".name as \"name\" FROM \"R_Hotel_TypeRoom\" INNER JOIN \"TypeRoom\" ON \"R_Hotel_TypeRoom\".idtyperoom = \"TypeRoom\".id WHERE \"R_Hotel_TypeRoom\".id = " + idRoom + ";");
+        while (resultSet.next()) {
+
+            idHotel = accessDB.toUtf8(resultSet.getString("name"));
+
+        }
+    }catch(SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return idHotel;
+
+
+
+    }
+    
     
     
 }

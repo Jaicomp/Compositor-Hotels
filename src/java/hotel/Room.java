@@ -11,14 +11,14 @@ package hotel;
  */
 public class Room {
     
-    private int id;
+    private int idRoom;
     private String hotelName;
     private int numRoomsAvailable;
     private int price;
     private String typeRoom;
     
-    public Room(int id, String hotelName, String typeroom, int numRoomsAvailable, int price) {
-        this.id = id;
+    public Room(int idRoom, String hotelName, String typeroom, int numRoomsAvailable, int price) {
+        this.idRoom = idRoom;
         this.hotelName = hotelName;
         this.typeRoom = typeroom;
         this.numRoomsAvailable = numRoomsAvailable;
@@ -29,8 +29,8 @@ public class Room {
         this.typeRoom = typeRoom;
     }
 
-    public int getId() {
-        return id;
+    public int getIdRoom() {
+        return idRoom;
     }
 
 

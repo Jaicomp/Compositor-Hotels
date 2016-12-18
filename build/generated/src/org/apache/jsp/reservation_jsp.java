@@ -66,6 +66,36 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
       }
       out.write("\n");
       out.write("        ");
+      database.DBHotel hotelDB = null;
+      synchronized (request) {
+        hotelDB = (database.DBHotel) _jspx_page_context.getAttribute("hotelDB", PageContext.REQUEST_SCOPE);
+        if (hotelDB == null){
+          hotelDB = new database.DBHotel();
+          _jspx_page_context.setAttribute("hotelDB", hotelDB, PageContext.REQUEST_SCOPE);
+        }
+      }
+      out.write("\n");
+      out.write("        ");
+      database.DBBooking bookingDB = null;
+      synchronized (request) {
+        bookingDB = (database.DBBooking) _jspx_page_context.getAttribute("bookingDB", PageContext.REQUEST_SCOPE);
+        if (bookingDB == null){
+          bookingDB = new database.DBBooking();
+          _jspx_page_context.setAttribute("bookingDB", bookingDB, PageContext.REQUEST_SCOPE);
+        }
+      }
+      out.write("\n");
+      out.write("        ");
+      database.DBRoom roomDB = null;
+      synchronized (request) {
+        roomDB = (database.DBRoom) _jspx_page_context.getAttribute("roomDB", PageContext.REQUEST_SCOPE);
+        if (roomDB == null){
+          roomDB = new database.DBRoom();
+          _jspx_page_context.setAttribute("roomDB", roomDB, PageContext.REQUEST_SCOPE);
+        }
+      }
+      out.write("\n");
+      out.write("        ");
       database.DBClient clientDB = null;
       synchronized (request) {
         clientDB = (database.DBClient) _jspx_page_context.getAttribute("clientDB", PageContext.REQUEST_SCOPE);
@@ -103,6 +133,26 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
             
             marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
 
+
+            if ((request.getParameter("adults") != null &&
+                    request.getParameter("children") != null &&
+                    request.getParameter("idRoom") != null &&
+                    request.getParameter("entryDate") != null &&
+                    request.getParameter("departureDate") != null) 
+                    
+                    ) {
+                session.setAttribute("adults", request.getParameter("adults"));
+                session.setAttribute("children", request.getParameter("children"));
+                session.setAttribute("idRoom", request.getParameter("idRoom"));
+                session.setAttribute("entryDate", request.getParameter("entryDate"));
+                session.setAttribute("departureDate", request.getParameter("departureDate"));
+                
+                session.setAttribute("idHotel", roomDB.getHotelIdFromIdRoom(request.getParameter("idRoom")));
+                session.setAttribute("idTypeRoom", roomDB.getTypeIdFromIdRoom(request.getParameter("idRoom")));
+                
+                
+
+            }
         
       out.write("\n");
       out.write("    </head>\n");
@@ -119,9 +169,51 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div id=\"content\">\n");
       out.write("            ");
 
-                if (session.getAttribute("username") != null && session.getAttribute("password") != null) {
+                if (request.getParameter("booking") != null) {
+                    /*
+                    out.println(session.getAttribute("adults"));
+                    out.println(session.getAttribute("children"));
+                    out.println(session.getAttribute("entryDate"));
+                    out.println(session.getAttribute("departureDate"));
+                    out.println(session.getAttribute("idClient"));
+                    out.println(session.getAttribute("idHotel"));
+                    out.println(session.getAttribute("idTypeRoom"));
+                    */
+                    
+                    bookingDB.addNewBooking(session.getAttribute("adults").toString(),
+                            session.getAttribute("children").toString(),
+                            session.getAttribute("entryDate").toString(),
+                            session.getAttribute("departureDate").toString(),
+                            session.getAttribute("idClient").toString(),
+                            session.getAttribute("idHotel").toString(),
+                            session.getAttribute("idTypeRoom").toString()
+                    );
                     
                     
+      out.write("\n");
+      out.write("                            \n");
+      out.write("                            \n");
+      out.write("                    <h1>Gracias por tu reserva</h1>\n");
+      out.write("                    <a>Continuar reservando</a>\n");
+      out.write("                    \n");
+      out.write("                    \n");
+      out.write("                    \n");
+      out.write("                    \n");
+      out.write("                    \n");
+      out.write("                    \n");
+      out.write("                    \n");
+      out.write("                    \n");
+      out.write("                    ");
+
+                    
+                    
+                }
+                else if (session.getAttribute("username") != null && session.getAttribute("password") != null &&
+                        session.getAttribute("adults") != null &&
+                        session.getAttribute("children") != null && 
+                        session.getAttribute("idRoom") != null) {
+                        session.setAttribute("idClient", clientDB.getClientIdFromUsername(session.getAttribute("username").toString()));
+                        out.println(session.getAttribute("idClient").toString());
                     
       out.write("\n");
       out.write("                    \n");
@@ -137,7 +229,12 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        Hotel:\n");
       out.write("                                    </td>\n");
       out.write("                                    <td>\n");
-      out.write("                                        Son Net\n");
+      out.write("                                        ");
+
+                                           out.println(hotelDB.getNameHotelFromHotelId(session.getAttribute("idHotel").toString()));
+                                        
+                                        
+      out.write("\n");
       out.write("                                    </td>\n");
       out.write("                                </tr>\n");
       out.write("                                <tr>\n");
@@ -146,7 +243,11 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        Entry date:\n");
       out.write("                                    </td>\n");
       out.write("                                    <td>\n");
-      out.write("                                        17-09-2016\n");
+      out.write("                                        ");
+
+                                            out.println(session.getAttribute("entryDate"));
+                                        
+      out.write("\n");
       out.write("                                    </td>\n");
       out.write("                                </tr>\n");
       out.write("                                <tr>\n");
@@ -154,7 +255,11 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        Departure date:\n");
       out.write("                                    </td>\n");
       out.write("                                    <td>\n");
-      out.write("                                        17-09-2016\n");
+      out.write("                                        ");
+
+                                            out.println(session.getAttribute("departureDate"));
+                                        
+      out.write("\n");
       out.write("                                    </td>\n");
       out.write("                                </tr>\n");
       out.write("                                <tr>\n");
@@ -163,7 +268,12 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        Adults:\n");
       out.write("                                    </td>\n");
       out.write("                                    <td>\n");
-      out.write("                                        2\n");
+      out.write("                                        ");
+
+                                        out.println(session.getAttribute("adults"));
+                                        
+      out.write("\n");
+      out.write("                \n");
       out.write("                                    </td>\n");
       out.write("                                </tr>\n");
       out.write("                                <tr>\n");
@@ -171,7 +281,12 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        Smallers:\n");
       out.write("                                    </td>\n");
       out.write("                                    <td>\n");
-      out.write("                                        3\n");
+      out.write("                                        ");
+
+                                        out.println(session.getAttribute("children"));
+                                        
+      out.write("\n");
+      out.write("                                        \n");
       out.write("                                    </td>\n");
       out.write("                                </tr>\n");
       out.write("                                <tr>\n");
@@ -179,12 +294,16 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        Type room:\n");
       out.write("                                    </td>\n");
       out.write("                                    <td>\n");
-      out.write("                                        Suite\n");
+      out.write("                                        ");
+
+                                        out.println(roomDB.getTypeRoomFromRoomId(session.getAttribute("idRoom").toString()));
+                                        
+      out.write("\n");
       out.write("                                    </td>\n");
       out.write("                                </tr>\n");
       out.write("                                <tr>\n");
       out.write("                                    <td>\n");
-      out.write("                                        <form>\n");
+      out.write("                                        <form method=\"POST\" action=\"reservation.jsp\">\n");
       out.write("                                            <input class=\"bluebackground\" type=\"submit\" name=\"booking\" value=\"Booking\">\n");
       out.write("                                            \n");
       out.write("                                        </form>\n");
@@ -205,17 +324,20 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    ");
 
                 }
-                else if (request.getParameter("login") != null && 
+                else if (request.getParameter("login") != null &&
                     request.getParameter("username") != null &&
                     request.getParameter("password") != null 
                     
                     ) {
                 
                 if (clientDB.existClient(request.getParameter("username"), request.getParameter("password"))) {
+                    
                     session.setAttribute("username", request.getParameter("username"));
                     session.setAttribute("password", request.getParameter("password"));
+                    response.sendRedirect("reservation.jsp");
                     
                 } else {
+                    
                     response.sendRedirect("reservation.jsp");
                 }
                 
@@ -231,6 +353,8 @@ public final class reservation_jsp extends org.apache.jasper.runtime.HttpJspBase
                 
                 session.setAttribute("username", request.getParameter("username"));
                 session.setAttribute("password", request.getParameter("password"));
+
+                response.sendRedirect("reservation.jsp");
             } else {
                 
             

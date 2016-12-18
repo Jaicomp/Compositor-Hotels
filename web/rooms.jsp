@@ -44,7 +44,6 @@
         <%! public static final int MAXNUMROOMS = 10;
             public static final int MAXNUMADULTS = 10;
             public static final int MAXNUMCHILDREN = 10;
-        
         %>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -82,7 +81,6 @@
 
                     for (int i = 0; i < hotels.size(); i++) {
                         out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
-
                     }
                     
                 %>
@@ -90,9 +88,9 @@
                 </select>
                 <br>
                 Check-in<br>
-                <input type="date" name="checkindate" min="2016-11-21" max="2018-01-01" required /><br>
+                <input type="date" id="entryDate" name="checkindate" min="2016-11-21" max="2018-01-01" required /><br>
                 Check-out<br>
-                <input type="date" name="checkoutdate" min="2016-11-21" max="2018-01-01" required /><br>
+                <input type="date" id="departureDate" name="checkoutdate" min="2016-11-21" max="2018-01-01" required /><br>
                 <table>
 
                     <tr>
@@ -100,10 +98,9 @@
                             Adults
                        </td>
                         <td>
-                            <select name="adults">
+                            <select id="adults" name="adults">
                                 <%
                                     for(int i = 1; i <= MAXNUMADULTS; i++){
-
                                         out.println("<option value="+i+">"+i+"</option>");
                                     }
 
@@ -116,10 +113,9 @@
                             Children
                         </td>
                         <td>
-                            <select name="children">
+                            <select id="children" name="children">
                                 <%
                                     for(int i = 0; i <= MAXNUMCHILDREN; i++){
-
                                         out.println("<option value="+i+">"+i+"</option>");
                                     }
 
@@ -151,28 +147,26 @@
                         ArrayList<Room> typeRooms = roomDB.getTypeRooms();
                         for (int i = 0; i < typeRooms.size(); i++) {
                                 out.print("<span onclick='changeActiveClass(this)' class='active'>" + typeRooms.get(i).getTypeRoom() + "</span>");
-                            }
+                        }
                         
                         
-                        %>
-                        <script>
-                            function changeActiveClass(obj) {
-                                
-                                let rooms = document.getElementsByClassName("room");
-                                obj.classList.toggle("active");
-                                
-                                for (let i = 0; i < rooms.length; i++) {
-                                        if(rooms[i].getAttribute("typeRoom") == obj.innerHTML) {
-                                            rooms[i].classList.toggle("visible");
-                                        }
+                    %>
+                    <script>
+                        function changeActiveClass(obj) {
+
+                            let rooms = document.getElementsByClassName("room");
+                            obj.classList.toggle("active");
+
+                            for (let i = 0; i < rooms.length; i++) {
+                                    if(rooms[i].getAttribute("typeRoom") == obj.innerHTML) {
+                                        rooms[i].classList.toggle("visible");
                                     }
-                                
-                                
-                                
-                            }
-                            
-                            
-                        </script>
+                                }
+
+                        }
+
+
+                    </script>
                 </div>
                 
                 <!--

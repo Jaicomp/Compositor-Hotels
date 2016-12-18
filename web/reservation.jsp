@@ -14,6 +14,9 @@
         
         <!-- Beans -->
         <jsp:useBean id="marketingDB" class="database.DBMarketing" scope="request" />
+        <jsp:useBean id="hotelDB" class="database.DBHotel" scope="request" />
+        <jsp:useBean id="bookingDB" class="database.DBBooking" scope="request" />
+        <jsp:useBean id="roomDB" class="database.DBRoom" scope="request" />
         <jsp:useBean id="clientDB" class="database.DBClient" scope="request" />
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,6 +37,26 @@
             
             marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
 
+
+            if ((request.getParameter("adults") != null &&
+                    request.getParameter("children") != null &&
+                    request.getParameter("idRoom") != null &&
+                    request.getParameter("entryDate") != null &&
+                    request.getParameter("departureDate") != null) 
+                    
+                    ) {
+                session.setAttribute("adults", request.getParameter("adults"));
+                session.setAttribute("children", request.getParameter("children"));
+                session.setAttribute("idRoom", request.getParameter("idRoom"));
+                session.setAttribute("entryDate", request.getParameter("entryDate"));
+                session.setAttribute("departureDate", request.getParameter("departureDate"));
+                
+                session.setAttribute("idHotel", roomDB.getHotelIdFromIdRoom(request.getParameter("idRoom")));
+                session.setAttribute("idTypeRoom", roomDB.getTypeIdFromIdRoom(request.getParameter("idRoom")));
+                
+                
+
+            }
         %>
     </head>
     <body>
@@ -46,9 +69,49 @@
 
         <div id="content">
             <%
-                if (session.getAttribute("username") != null && session.getAttribute("password") != null) {
+                if (request.getParameter("booking") != null) {
+                    /*
+                    out.println(session.getAttribute("adults"));
+                    out.println(session.getAttribute("children"));
+                    out.println(session.getAttribute("entryDate"));
+                    out.println(session.getAttribute("departureDate"));
+                    out.println(session.getAttribute("idClient"));
+                    out.println(session.getAttribute("idHotel"));
+                    out.println(session.getAttribute("idTypeRoom"));
+                    */
+                    
+                    bookingDB.addNewBooking(session.getAttribute("adults").toString(),
+                            session.getAttribute("children").toString(),
+                            session.getAttribute("entryDate").toString(),
+                            session.getAttribute("departureDate").toString(),
+                            session.getAttribute("idClient").toString(),
+                            session.getAttribute("idHotel").toString(),
+                            session.getAttribute("idTypeRoom").toString()
+                    );
+                    
+                    %>
+                            
+                            
+                    <h1>Gracias por tu reserva</h1>
+                    <a href="rooms.jsp">Continuar reservando</a>
                     
                     
+                    
+                    
+                    
+                    
+                    
+                    
+                    <%
+                    
+                    
+                }
+                else if (session.getAttribute("username") != null && session.getAttribute("password") != null &&
+                        session.getAttribute("adults") != null &&
+                        session.getAttribute("children") != null && 
+                        session.getAttribute("idRoom") != null) {
+                        session.setAttribute("idClient", clientDB.getClientIdFromUsername(session.getAttribute("username").toString()));
+                        out.println(session.getAttribute("idClient").toString());
                     %>
                     
                     <div id="reservationSummary" class="panel">
@@ -63,7 +126,10 @@
                                         Hotel:
                                     </td>
                                     <td>
-                                        Son Net
+                                        <%
+                                           out.println(hotelDB.getNameHotelFromHotelId(session.getAttribute("idHotel").toString()));
+                                        
+                                        %>
                                     </td>
                                 </tr>
                                 <tr>
@@ -72,7 +138,9 @@
                                         Entry date:
                                     </td>
                                     <td>
-                                        17-09-2016
+                                        <%
+                                            out.println(session.getAttribute("entryDate"));
+                                        %>
                                     </td>
                                 </tr>
                                 <tr>
@@ -80,7 +148,9 @@
                                         Departure date:
                                     </td>
                                     <td>
-                                        17-09-2016
+                                        <%
+                                            out.println(session.getAttribute("departureDate"));
+                                        %>
                                     </td>
                                 </tr>
                                 <tr>
@@ -89,7 +159,10 @@
                                         Adults:
                                     </td>
                                     <td>
-                                        2
+                                        <%
+                                        out.println(session.getAttribute("adults"));
+                                        %>
+                
                                     </td>
                                 </tr>
                                 <tr>
@@ -97,7 +170,10 @@
                                         Smallers:
                                     </td>
                                     <td>
-                                        3
+                                        <%
+                                        out.println(session.getAttribute("children"));
+                                        %>
+                                        
                                     </td>
                                 </tr>
                                 <tr>
@@ -105,12 +181,14 @@
                                         Type room:
                                     </td>
                                     <td>
-                                        Suite
+                                        <%
+                                        out.println(roomDB.getTypeRoomFromRoomId(session.getAttribute("idRoom").toString()));
+                                        %>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <form>
+                                        <form method="POST" action="reservation.jsp">
                                             <input class="bluebackground" type="submit" name="booking" value="Booking">
                                             
                                         </form>
@@ -130,17 +208,20 @@
                     
                     <%
                 }
-                else if (request.getParameter("login") != null && 
+                else if (request.getParameter("login") != null &&
                     request.getParameter("username") != null &&
                     request.getParameter("password") != null 
                     
                     ) {
                 
                 if (clientDB.existClient(request.getParameter("username"), request.getParameter("password"))) {
+                    
                     session.setAttribute("username", request.getParameter("username"));
                     session.setAttribute("password", request.getParameter("password"));
+                    response.sendRedirect("reservation.jsp");
                     
                 } else {
+                    
                     response.sendRedirect("reservation.jsp");
                 }
                 
@@ -156,6 +237,8 @@
                 
                 session.setAttribute("username", request.getParameter("username"));
                 session.setAttribute("password", request.getParameter("password"));
+
+                response.sendRedirect("reservation.jsp");
             } else {
                 
             %>

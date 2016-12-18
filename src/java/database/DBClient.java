@@ -51,6 +51,24 @@ public class DBClient {
         }
         
     }
-    
-    
+        
+       public String getClientIdFromUsername(String username) {
+        String clientId = "";
+        try {
+            
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT id FROM \"Client\" WHERE username='" + username + "';");
+            
+            while (resultSet.next()) {
+
+                clientId = accessDB.toUtf8(String.valueOf(resultSet.getInt("id")));
+
+            }
+            
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return clientId;
+        
+    }
 }
