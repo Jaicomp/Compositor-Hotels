@@ -98,6 +98,8 @@ insert into "Marketing"(namepage, title, keywords, description, language, visite
 
 insert into "Marketing"(namepage, title, keywords, description, language, visited) values ('tribago.jsp', 'Booking','Tribago,reservation,hotel', 'See avaliable room', 'spanish', 0);
 
+insert into "Marketing"(namepage, title, keywords, description, language, visited) values ('reception.jsp', 'Reception','Reception,Back office, hotel', 'Manage rooms', 'spanish', 0);
+
 
 
 

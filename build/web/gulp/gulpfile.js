@@ -13,6 +13,7 @@ gulp.task('less', function() {
 	'../assets/styles/less/main.less',
 	'../assets/styles/less/marketing.less',
 	'../assets/styles/less/reservation.less',
+	'../assets/styles/less/reception.less',
 	'../assets/styles/less/tribago.less'
 	])
 		.pipe(less())

@@ -1,0 +1,27 @@
+* body h1 {
+  text-align: center;
+  color: #0896ff;
+}
+* body div#listTypeRoom {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+}
+* body div#listTypeRoom div.RelationHotelTypeRoom {
+  width: 250px;
+  float: left;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 1px;
+}
+* body div#listTypeRoom div.RelationHotelTypeRoom div {
+  padding: 5px;
+}
+* body div#listTypeRoom div.RelationHotelTypeRoom div span {
+  font-size: 20px;
+  font-weight: bold;
+}
+* body div#listTypeRoom div.RelationHotelTypeRoom div input {
+  width: 100%;
+}
