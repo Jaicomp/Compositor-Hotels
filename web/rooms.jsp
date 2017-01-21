@@ -78,7 +78,6 @@
 
                 <%
                     ArrayList<Hotel> hotels = hotelDB.getHotels();
-
                     for (int i = 0; i < hotels.size(); i++) {
                         out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
                     }
@@ -88,9 +87,9 @@
                 </select>
                 <br>
                 Check-in<br>
-                <input type="date" id="entryDate" name="checkindate" min="2016-11-21" max="2018-01-01" required /><br>
+                <input type="date" id="entryDate" name="checkindate" min="2016-11-21" max="2018-01-01"  value = "2016-11-21" required /><br>
                 Check-out<br>
-                <input type="date" id="departureDate" name="checkoutdate" min="2016-11-21" max="2018-01-01" required /><br>
+                <input type="date" id="departureDate" name="checkoutdate" min="2016-11-21" max="2018-01-01" value = "2016-11-21" required /><br>
                 <table>
 
                     <tr>

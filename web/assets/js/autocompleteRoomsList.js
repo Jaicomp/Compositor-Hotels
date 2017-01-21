@@ -9,7 +9,6 @@ let departurDate;
 
 function init() {
 	listRooms = document.getElementById("listRooms");
-        
 }
 
 function autocompleteRoomsList() {
@@ -28,13 +27,16 @@ function autocompleteRoomsList() {
     
     let request = {
         method: "GET",
-        url: "AutocompleteRoomsList?hotel="+hotelName,
+        url: "AutocompleteRoomsList?hotel="+hotelName+"&entrydate="+entryDate.value+"&departuredate="+departureDate.value,
         isAsynchronous: true
     }
     
     
     sendRequest(request,function(responseXML) {
         
+        removeAllRooms();
+        removeAllRooms();
+        removeAllRooms();
         removeAllRooms();
         removeAllRooms();
         removeAllRooms();

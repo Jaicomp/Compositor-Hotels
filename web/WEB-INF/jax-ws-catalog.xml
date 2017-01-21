@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:36407/CompositorHotels/WSInfoRooms?wsdl" uri="wsdl/localhost_36407/CompositorHotels/WSInfoRooms.wsdl"/>
+    <system systemId="http://localhost:36407/CompositorHotels/WSInfoRooms?xsd=1" uri="wsdl/localhost_36407/CompositorHotels/WSInfoRooms.xsd_1.xsd"/>
+    <system systemId="http://localhost:36407/CompositorHotels/InfoRooms?wsdl" uri="wsdl/localhost_36407/CompositorHotels/InfoRooms.wsdl"/>
+    <system systemId="http://localhost:36407/CompositorHotels/InfoRooms?xsd=1" uri="wsdl/localhost_36407/CompositorHotels/InfoRooms.xsd_1.xsd"/>
+</catalog>

@@ -4,6 +4,7 @@
     Author     : jaimescript
 --%>
 
+<%@page import="hotel.Booking"%>
 <%@page import="hotel.TypeRoom"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="marketing.Header"%>
@@ -21,7 +22,7 @@
         <!-- Beans -->
         <jsp:useBean id="marketingDB" class="database.DBMarketing" scope="request" />
         <jsp:useBean id="typeRoomDB" class="database.DBTypeRoom" scope="request" />
-        
+        <jsp:useBean id="bookingDB" class="database.DBBooking" scope="request" />
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Compositor Hotels</title>
@@ -45,10 +46,11 @@
     </head>
     <body>
         
-        <h1> Marketing </h1>
+        <h1> Reception </h1>
         <div id="listTypeRoom">
             <%
            ArrayList<TypeRoom> typeRooms = typeRoomDB.getTypeRooms();
+           
            for (int i = 0; i < typeRooms.size(); i++) {
                    out.println("<div class=\"RelationHotelTypeRoom\" >");
                    
@@ -61,15 +63,34 @@
                    out.println("</div>");
                    
                    out.println("<div class=\"numofavailablerooms\">");
-                   out.println("<span>Number of Rooms available: </span><input idRHotelTypeRoom='" + typeRooms.get(i).getIdRHotelTypeRoom() + "' onchange=\"updateMetaTag(this)\" type=\"text\" maxlength=\"50\" name=\"description\" value=\"" + typeRooms.get(i).getNumroomsavailable()+ "\" />");
+                   out.println("<span>Number of Rooms available: </span><input idRHotelTypeRoom='" + typeRooms.get(i).getIdRHotelTypeRoom() + "' onchange=\"updateNumberOfAvailableRooms(this)\" type=\"text\" maxlength=\"50\" name=\"description\" value=\"" + typeRooms.get(i).getNumroomsavailable()+ "\" />");
                    out.println("</div>");
                    
                    out.println("<div class=\"price\">");
                    out.println("<span>Price: </span>" + typeRooms.get(i).getPrice()+ "");
                    out.println("</div>");
                    
-                  
+                   out.println("<div class=\"booking\">");
+                   out.println("<center><button >List of booking</button></center>");
                    
+                   out.println("</div>");
+                   
+                   ArrayList<Booking> bookings = bookingDB.getBooking(typeRooms.get(i).getIdTypeRoom(), typeRooms.get(i).getNameHotel());
+                   
+                   for (int j = 0; j < bookings.size(); j++) {
+                      
+                       
+                      
+                       if (bookings.get(j).getIdTypeRoom().equals(typeRooms.get(i).getIdTypeRoom()) &&
+                               bookings.get(j).getNameHotel().equals(typeRooms.get(i).getNameHotel())) {
+                               out.println("Adults: "+bookings.get(j).getAdult()+"\n");
+                               out.println("Smallers: "+bookings.get(j).getSmallers()+"\n");
+                               out.println("Entry Date "+bookings.get(j).getEntry_date()+"\n");
+                               out.println("Departure Date "+bookings.get(j).getDeparture_date()+"\n");
+                               
+                           }
+                           
+                    }
                    out.println("</div>");
                }
             

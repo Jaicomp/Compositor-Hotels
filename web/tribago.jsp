@@ -4,6 +4,7 @@
     Author     : jaimescript
 --%>
 
+
 <%@page import="marketing.Header"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -46,8 +47,20 @@
             </div>
         </header>
         
+        <%
+            
+        String hola = WSCTribago.getInfoRooms("", "");
+        out.println();
+
+
+
+            
+        %>
         
         
         
     </body>
 </html>
+    <%-- start web service invocation --%><hr/>
+    
+    <%-- end web service invocation --%><hr/>
