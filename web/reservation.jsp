@@ -9,6 +9,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Title and main Icon -->
+        <title>Compositor Hotels</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-16x16.png">
+        <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon.ico">
+        
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/styles/css/reservation.css">
         
@@ -19,23 +27,17 @@
         <jsp:useBean id="roomDB" class="database.DBRoom" scope="request" />
         <jsp:useBean id="clientDB" class="database.DBClient" scope="request" />
         
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Compositor Hotels</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-16x16.png">
-        <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon.ico">
         
         
         <%
-            Header header = marketingDB.getHeaderInfoFromPage(request.getServletPath().replace("/", ""));
+            Header header = marketingDB.getHeaderFromPage(request.getServletPath().replace("/", ""));
             
             out.println("<meta name=\"title\" content="+ header.getTitle()+"/>");
             out.println("<meta name=\"description\" content="+ header.getDescription() +"/>");
             out.println("<meta name=\"keywords\" content="+ header.getKeywords()+"/>");
             out.println("<meta name=\"language\" content="+ header.getLanguage()+"/>");
             
-            marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
+            marketingDB.increaseVisitsFromPage(request.getServletPath().replace("/", ""));
 
 
             if ((request.getParameter("adults") != null &&
@@ -70,15 +72,6 @@
         <div id="content">
             <%
                 if (request.getParameter("booking") != null) {
-                    /*
-                    out.println(session.getAttribute("adults"));
-                    out.println(session.getAttribute("children"));
-                    out.println(session.getAttribute("entryDate"));
-                    out.println(session.getAttribute("departureDate"));
-                    out.println(session.getAttribute("idClient"));
-                    out.println(session.getAttribute("idHotel"));
-                    out.println(session.getAttribute("idTypeRoom"));
-                    */
                     
                     bookingDB.addNewBooking(session.getAttribute("adults").toString(),
                             session.getAttribute("children").toString(),
@@ -94,16 +87,7 @@
                             
                     <h1>Gracias por tu reserva</h1>
                     <a href="rooms.jsp">Continuar reservando</a>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     <%
-                    
                     
                 }
                 else if (session.getAttribute("username") != null && session.getAttribute("password") != null &&
@@ -242,6 +226,8 @@
             } else {
                 
             %>
+            <!-- If session is not initialized -->
+            <!-- Show register and log in panels --> 
                 <div class="panel" >
                     <div class="panelHeader center blue">
                         Log in

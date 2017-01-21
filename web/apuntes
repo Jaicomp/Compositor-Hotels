@@ -1,0 +1,33 @@
+APUNTES
+
+Librerías:
+
+CDN:
+jquery.min.js
+
+Librerías:
+PostgreSQL JDBC Driver
+JDK 1.8
+GlassFish
+
+Web Services:
+InfoRooms <- Pendiente cambiar nombre
+
+index.jsp -> Nada
+
+rooms.jsp:
+
+def DBHotel
+
+end
+def DBRoom
+
+end
+def DBMarketing
+	getHeaderFromPage -> Header
+	increaseVisitsFromPage
+end
+
+
+
+

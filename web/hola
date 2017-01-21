@@ -1,0 +1,66 @@
+APUNTES
+
+Librerías:
+
+CDN:
+jquery.min.js
+
+Librerías:
+PostgreSQL JDBC Driver
+JDK 1.8
+GlassFish
+
+Web Services:
+InfoRooms <- Pendiente cambiar nombre
+
+index.jsp -> Nada
+
+rooms.jsp:
+
+def DBHotel
+	getHotels()
+end
+def DBRoom
+	getTypeRooms()
+end
+def DBMarketing
+	getHeaderFromPage -> Header
+	increaseVisitsFromPage
+end
+
+reservation.jsp:
+	
+def clientDB:
+	getClientIdFromUsername
+	existClient	
+	addNewClient
+
+def roomDB:
+	getHotelIdFromIdRoom
+	getTypeRoomFromRoomId
+def bookingDB:
+	addNewBooking
+
+def hotelDB:
+	getNameHotelFromHotelId
+
+reception.jsp:
+	getTypeRooms()
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

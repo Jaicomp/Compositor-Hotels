@@ -12,6 +12,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Title and main Icon -->
+        <title>Compositor Hotels</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-16x16.png">
+        <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon.ico">
+        
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/styles/css/reception.css">
         
@@ -24,23 +32,17 @@
         <jsp:useBean id="typeRoomDB" class="database.DBTypeRoom" scope="request" />
         <jsp:useBean id="bookingDB" class="database.DBBooking" scope="request" />
         
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Compositor Hotels</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-16x16.png">
-        <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon.ico">
         
         
         <%
-            Header header = marketingDB.getHeaderInfoFromPage(request.getServletPath().replace("/", ""));
+            Header header = marketingDB.getHeaderFromPage(request.getServletPath().replace("/", ""));
             
             out.println("<meta name=\"title\" content="+ header.getTitle()+"/>");
             out.println("<meta name=\"description\" content="+ header.getDescription() +"/>");
             out.println("<meta name=\"keywords\" content="+ header.getKeywords()+"/>");
             out.println("<meta name=\"language\" content="+ header.getLanguage()+"/>");
             
-            marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
+            marketingDB.increaseVisitsFromPage(request.getServletPath().replace("/", ""));
 
         %>
     </head>
