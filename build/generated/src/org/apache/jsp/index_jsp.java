@@ -104,11 +104,12 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("              <a href=\"rooms.jsp\">MAKE A RESERVATION</a>\n");
       out.write("              \n");
       out.write("            </div>\n");
+      out.write("              <!--\n");
       out.write("            <div id=\"about\">\n");
-      out.write("                <p>ASDASD</p>\n");
-      out.write("                asdasd<br>\n");
+      out.write("                \n");
       out.write("                jajajajaj\n");
       out.write("            </div>\n");
+      out.write("              -->\n");
       out.write("        </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");

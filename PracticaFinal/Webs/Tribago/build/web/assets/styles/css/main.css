@@ -1,0 +1,99 @@
+* body {
+  margin: 0;
+	background-color: #fefefe;
+}
+* body header nav {
+  text-align: center;
+  font-size: 40px;
+}
+* body header nav span.blue {
+  color: #007fad;
+}
+* body header nav span.yellow {
+  color: #FF8800;
+}
+* body header nav span.red {
+  color: #B71C1C;
+}
+* body header div#searchEngine {
+  text-align: center;
+  background-color: #37454d;
+  width: 100%;
+  height: 90px;
+}
+* body header div#searchEngine form input {
+  margin-top: 30px;
+}
+* body header div#searchEngine form input[type="date"] {
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 0;
+  height: 30px;
+}
+* body header div#searchEngine form input[type="submit"] {
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #0896ff;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 0;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+
+body div#rooms {
+	position: relative;
+
+}
+
+body div#rooms div.room {
+	margin: 20px auto;
+	width: 30%;
+	height: 70px;
+	
+	border: 1px solid grey;
+	border-radius: 5px;
+	-webkit-box-shadow: -1px 0px 28px -6px rgba(97,96,97,1);
+	-moz-box-shadow: -1px 0px 28px -6px rgba(97,96,97,1);
+	box-shadow: -1px 0px 28px -6px rgba(97,96,97,1);
+	position: relative;
+
+}
+
+body div#rooms div.room div.hotel {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	font-weight: bold;
+	font-size: 25px;
+
+}
+
+body div#rooms div.room div.typeroom {
+	position: absolute;
+	top: 44px;
+	left: 10px;
+
+}
+
+body div#rooms div.room div.price {
+	position: absolute;
+	top: 44px;
+	right: 10px;
+
+}
+
+body div#rooms div.room div.numroomsavailable {
+	position: absolute;
+	top: 20px;
+	right: 10px;
+
+}
+
+
+
+

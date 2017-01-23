@@ -49,11 +49,12 @@
               <a href="rooms.jsp">MAKE A RESERVATION</a>
               
             </div>
+              <!--
             <div id="about">
-                <p>ASDASD</p>
-                asdasd<br>
+                
                 jajajajaj
             </div>
+              -->
         </div>
     </body>
 </html>
