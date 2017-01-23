@@ -21,11 +21,13 @@
         <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon.ico">
         
         <!-- Styles -->
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/styles/css/modal.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/styles/css/reception.css">
         
         <!-- JS -->
         <script src="<%= request.getContextPath() %>/assets/js/ajax.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/updateNumberOfAvailableRooms.js"></script>
+        <script defer='true' src="<%= request.getContextPath() %>/assets/js/reception/main.js"></script>
        
         <!-- Beans -->
         <jsp:useBean id="marketingDB" class="database.DBMarketing" scope="request" />
@@ -48,7 +50,7 @@
     </head>
     <body>
         
-        <h1> Reception </h1>
+        <h1> Recepción </h1>
         <div id="listTypeRoom">
             <%
            ArrayList<TypeRoom> typeRooms = typeRoomDB.getTypeRooms();
@@ -61,45 +63,69 @@
                    out.println("</div>");
                    
                    out.println("<div class=\"typeroom\">");
-                   out.println("<span>Type of Room: </span>" + typeRooms.get(i).getTypeRoom()+ "");
+                   out.println("<span>Habitación: </span>" + typeRooms.get(i).getTypeRoom()+ "");
                    out.println("</div>");
                    
                    out.println("<div class=\"numofavailablerooms\">");
-                   out.println("<span>Number of Rooms available: </span><input idRHotelTypeRoom='" + typeRooms.get(i).getIdRHotelTypeRoom() + "' onchange=\"updateNumberOfAvailableRooms(this)\" type=\"text\" maxlength=\"50\" name=\"description\" value=\"" + typeRooms.get(i).getNumroomsavailable()+ "\" />");
+                   out.println("<span>Habitaciones disponibles: </span><input idRHotelTypeRoom='" + typeRooms.get(i).getIdRHotelTypeRoom() + "' onchange=\"updateNumberOfAvailableRooms(this)\" type=\"text\" maxlength=\"50\" name=\"description\" value=\"" + typeRooms.get(i).getNumroomsavailable()+ "\" />");
                    out.println("</div>");
                    
                    out.println("<div class=\"price\">");
-                   out.println("<span>Price: </span>" + typeRooms.get(i).getPrice()+ "");
+                   out.println("<span>Precio: </span>" + typeRooms.get(i).getPrice()+ "");
                    out.println("</div>");
                    
                    out.println("<div class=\"booking\">");
-                   out.println("<center><button >List of booking</button></center>");
+                   out.println("<center><button class='openModal'>Reservas</button></center>");
                    
                    out.println("</div>");
                    
                    ArrayList<Booking> bookings = bookingDB.getBooking(typeRooms.get(i).getIdTypeRoom(), typeRooms.get(i).getNameHotel());
                    
+                   out.println("<div class='myModal modal'>");
+                   out.println("<div class='modal-content'>");
+                   out.println("<div class='modal-header'>");
+                   out.println("<span class='close'>&times;</span>");
+                   out.println("<center><h2>Reservas</h2></center>");
+                   out.println("</div>");
+                   out.println("<center>");
+                   out.println("<table>");
+                   out.println("<thead>");
+                   out.println("<tr>");
+                   out.println("<td>");
+                   out.println("Adultos");
+                   out.println("</td>");
+                   out.println("<td>");
+                   out.println("Hijos");
+                   out.println("</td>");
+                   out.println("<td>");
+                   out.println("Fecha de entrada");
+                   out.println("</td>");
+                   out.println("<td>");
+                   out.println("Fecha de salida");
+                   out.println("</td>");
+                   out.println("</tr>");
+                   out.println("</thead>");
+                   
                    for (int j = 0; j < bookings.size(); j++) {
-                      
                        
-                      
                        if (bookings.get(j).getIdTypeRoom().equals(typeRooms.get(i).getIdTypeRoom()) &&
                                bookings.get(j).getNameHotel().equals(typeRooms.get(i).getNameHotel())) {
-                               out.println("Adults: "+bookings.get(j).getAdult()+"\n");
-                               out.println("Smallers: "+bookings.get(j).getSmallers()+"\n");
-                               out.println("Entry Date "+bookings.get(j).getEntry_date()+"\n");
-                               out.println("Departure Date "+bookings.get(j).getDeparture_date()+"\n");
-                               
+                           out.println("<tr>");
+                               out.println("<td> "+bookings.get(j).getAdult()+"</td>");
+                               out.println("<td>"+bookings.get(j).getSmallers()+"</td>");
+                               out.println("<td>"+bookings.get(j).getEntry_date()+"</td>");
+                               out.println("<td>"+bookings.get(j).getDeparture_date()+"</td>");
+                            out.println("</tr>");   
                            }
                            
                     }
+                   out.println("</table>");
+                   out.println("</center>");
+                   out.println("</div>");
+                   out.println("</div>");
                    out.println("</div>");
                }
-            
-            
         %>
-            
         </div>
-        
     </body>
 </html>

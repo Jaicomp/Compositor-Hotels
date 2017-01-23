@@ -8,6 +8,10 @@
         <servlet-name>UpdateMetaTag</servlet-name>
         <servlet-class>ajaxPages.UpdateMetaTag</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateNumberOfAvailableRooms</servlet-name>
+        <servlet-class>ajaxPages.UpdateNumberOfAvailableRooms</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AutocompleteRoomsList</servlet-name>
         <url-pattern>/AutocompleteRoomsList</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>UpdateMetaTag</servlet-name>
         <url-pattern>/UpdateMetaTag</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateNumberOfAvailableRooms</servlet-name>
+        <url-pattern>/UpdateNumberOfAvailableRooms</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

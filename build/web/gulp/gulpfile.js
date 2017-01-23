@@ -5,6 +5,7 @@ var less = require('gulp-less');
 gulp.task('default', function() {
 
 	gulp.watch('../assets/styles/less/*.less',['less']);
+	gulp.watch('../assets/styles/less/*/*.less',['less']);
 
 });
 

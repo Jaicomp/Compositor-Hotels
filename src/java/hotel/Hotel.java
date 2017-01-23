@@ -21,4 +21,9 @@ public class Hotel {
         return name;
     }
     
+    public String toString() {
+        
+        return "<hotel><name>"+name+"</name></hotel>";
+    }
+    
 }

@@ -27,26 +27,37 @@ public class DBTypeRoom {
     public ArrayList<TypeRoom> getTypeRooms() {
         ArrayList<TypeRoom> typeRooms = new ArrayList<>();
         try {
-            ResultSet resultSet = accessDB.executeSQLStatement("SELECT \"R_Hotel_TypeRoom\".id, \"TypeRoom\".name AS \"typeroom\", \"Hotel\".name AS \"namehotel\", \"R_Hotel_TypeRoom\".numroomsavailable, \"R_Hotel_TypeRoom\".price FROM \"Hotel\" INNER JOIN (\"R_Hotel_TypeRoom\" INNER JOIN \"TypeRoom\" ON \"R_Hotel_TypeRoom\".idtyperoom=\"TypeRoom\".id) ON \"Hotel\".id=\"R_Hotel_TypeRoom\".idhotel ;");
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT \"R_Hotel_TypeRoom\".id, \"TypeRoom\".id AS \"typeRoomId\",\"TypeRoom\".name AS \"typeroom\", \"Hotel\".name AS \"namehotel\", \"R_Hotel_TypeRoom\".numroomsavailable, \"R_Hotel_TypeRoom\".price FROM \"Hotel\" INNER JOIN (\"R_Hotel_TypeRoom\" INNER JOIN \"TypeRoom\" ON \"R_Hotel_TypeRoom\".idtyperoom=\"TypeRoom\".id) ON \"Hotel\".id=\"R_Hotel_TypeRoom\".idhotel ;");
             
             while(resultSet.next()) {
                 
                 String RHotelTypeRoom = accessDB.toUtf8(resultSet.getString("id"));
+                String idTypeRoom = accessDB.toUtf8(resultSet.getString("typeRoomId"));
                 String typeRoom = accessDB.toUtf8(resultSet.getString("typeroom"));
                 String nameHotel = accessDB.toUtf8(resultSet.getString("namehotel"));
                 String numroomsavailable = accessDB.toUtf8(resultSet.getString("numroomsavailable"));
                 String price = accessDB.toUtf8(resultSet.getString("price"));
                     
-                typeRooms.add(new TypeRoom(RHotelTypeRoom, typeRoom, nameHotel, numroomsavailable, price));
+                typeRooms.add(new TypeRoom(RHotelTypeRoom,idTypeRoom, typeRoom, nameHotel, numroomsavailable, price));
             
             }
-            
             
         } catch (SQLException ex) {
             Logger.getLogger(DBTypeRoom.class.getName()).log(Level.SEVERE, null, ex);
         }
             
         return typeRooms;
+    }
+    
+    public void updateNumberOfAvailableRooms(String id, String numberOfAvailableRooms) {
+        
+        try {
+            
+           accessDB.executeSQLStatement("UPDATE \"R_Hotel_TypeRoom\" SET numroomsavailable=" + numberOfAvailableRooms + " WHERE id=" + id +";");
+        } catch (SQLException ex) {
+            Logger.getLogger(DBTypeRoom.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     

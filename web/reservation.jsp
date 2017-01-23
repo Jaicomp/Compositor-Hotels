@@ -28,7 +28,6 @@
         <jsp:useBean id="clientDB" class="database.DBClient" scope="request" />
         
         
-        
         <%
             Header header = marketingDB.getHeaderFromPage(request.getServletPath().replace("/", ""));
             
@@ -95,7 +94,7 @@
                         session.getAttribute("children") != null && 
                         session.getAttribute("idRoom") != null) {
                         session.setAttribute("idClient", clientDB.getClientIdFromUsername(session.getAttribute("username").toString()));
-                        out.println(session.getAttribute("idClient").toString());
+                        
                     %>
                     
                     <div id="reservationSummary" class="panel">

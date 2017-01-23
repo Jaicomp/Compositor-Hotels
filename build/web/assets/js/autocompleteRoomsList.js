@@ -9,9 +9,9 @@ let departurDate;
 
 function init() {
 	listRooms = document.getElementById("listRooms");
-        
 }
 
+// Update list of rooms
 function autocompleteRoomsList() {
     
     hotel = document.getElementsByTagName("select")[0];
@@ -28,13 +28,17 @@ function autocompleteRoomsList() {
     
     let request = {
         method: "GET",
-        url: "AutocompleteRoomsList?hotel="+hotelName,
+        url: "AutocompleteRoomsList?hotel="+hotelName+"&entrydate="+entryDate.value+"&departuredate="+departureDate.value,
         isAsynchronous: true
     }
     
-    
+    // Send ajax request
     sendRequest(request,function(responseXML) {
         
+        // Remove all rooms (6 times because of strange bug)
+        removeAllRooms();
+        removeAllRooms();
+        removeAllRooms();
         removeAllRooms();
         removeAllRooms();
         removeAllRooms();
@@ -117,8 +121,6 @@ function autocompleteRoomsList() {
                 idRoomHiddenInput.setAttribute("name", "idRoom");
                 idRoomHiddenInput.setAttribute("value", idRoom.childNodes[0].nodeValue);
                 
-                
-                
                 let bookingButton = document.createElement("button");
                 bookingButton.setAttribute("class", "bookingButton");
                 textNode = document.createTextNode("Reservar habitación ➤");
@@ -152,7 +154,6 @@ function removeAllRooms() {
     for (var i = 0; i < rooms.length; i++) {
         rooms[i].parentNode.removeChild(rooms[i]);
     }
-     
 }
 
 

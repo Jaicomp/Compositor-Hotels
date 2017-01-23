@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
- public static final int MAXNUMROOMS = 10;
-            public static final int MAXNUMADULTS = 10;
-            public static final int MAXNUMCHILDREN = 10;
+ 
+            public static final int MAX_NUM_ADULTS = 10;
+            public static final int MAX_NUM_CHILDREN = 10;
         
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
@@ -59,6 +59,21 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <!-- Title and main Icon -->\n");
+      out.write("        <title>Compositor Hotels</title>\n");
+      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon-32x32.png\">\n");
+      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon-96x96.png\">\n");
+      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon-16x16.png\">\n");
+      out.write("        <link rel=\"shortcut icon\" type=\"image/x-icon\" sizes=\"16x16\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon.ico\">\n");
       out.write("        \n");
       out.write("        <!-- Styles -->\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"");
@@ -72,6 +87,7 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"");
       out.print( request.getContextPath() );
       out.write("/assets/js/autocompleteRoomsList.js\"></script>\n");
+      out.write("        \n");
       out.write("        \n");
       out.write("        <!-- CDN -->\n");
       out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>\n");
@@ -108,41 +124,29 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       }
       out.write("\n");
       out.write("        \n");
+      out.write("        <!-- Set title, description, keywords and language -->\n");
       out.write("        ");
 
-            Header header = marketingDB.getHeaderInfoFromPage(request.getServletPath().replace("/", ""));
+            Header header = marketingDB.getHeaderFromPage(request.getServletPath().replace("/", ""));
             
             out.println("<meta name=\"title\" content="+ header.getTitle()+"/>");
             out.println("<meta name=\"description\" content="+ header.getDescription() +"/>");
             out.println("<meta name=\"keywords\" content="+ header.getKeywords()+"/>");
             out.println("<meta name=\"language\" content="+ header.getLanguage()+"/>");
             
-            marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
+            // Increase a visit on this page
+            marketingDB.increaseVisitsFromPage(request.getServletPath().replace("/", ""));
 
         
       out.write("\n");
       out.write("        \n");
-      out.write("        <!-- Declarations -->\n");
+      out.write("        <!-- Global declarations -->\n");
       out.write("        ");
       out.write("\n");
       out.write("        \n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Compositor Hotels</title>\n");
-      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"");
-      out.print( request.getContextPath() );
-      out.write("/assets/images/favicon/favicon-32x32.png\">\n");
-      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"");
-      out.print( request.getContextPath() );
-      out.write("/assets/images/favicon/favicon-96x96.png\">\n");
-      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"");
-      out.print( request.getContextPath() );
-      out.write("/assets/images/favicon/favicon-16x16.png\">\n");
-      out.write("        <link rel=\"shortcut icon\" type=\"image/x-icon\" sizes=\"16x16\" href=\"");
-      out.print( request.getContextPath() );
-      out.write("/assets/images/favicon/favicon.ico\">\n");
       out.write("        \n");
-      out.write("\n");
       out.write("    </head>\n");
+      out.write("    <!-- init() initialize ajax funcionality -->\n");
       out.write("    <body onload=\"init()\">\n");
       out.write("        <header>\n");
       out.write("            <nav>\n");
@@ -158,8 +162,10 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </ul>\n");
       out.write("            </nav>\n");
       out.write("        </header>\n");
+      out.write("                \n");
+      out.write("                \n");
       out.write("        <div id=\"content\">\n");
-      out.write("            \n");
+      out.write("            <!-- Main panel -->\n");
       out.write("            <div id=\"panel\">\n");
       out.write("                <h1>Search</h1>\n");
       out.write("                    Hotel:<br>\n");
@@ -169,7 +175,6 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                ");
 
                     ArrayList<Hotel> hotels = hotelDB.getHotels();
-
                     for (int i = 0; i < hotels.size(); i++) {
                         out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
                     }
@@ -180,9 +185,9 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </select>\n");
       out.write("                <br>\n");
       out.write("                Check-in<br>\n");
-      out.write("                <input type=\"date\" id=\"entryDate\" name=\"checkindate\" min=\"2016-11-21\" max=\"2018-01-01\" required /><br>\n");
+      out.write("                <input type=\"date\" id=\"entryDate\" name=\"checkindate\" min=\"2016-11-21\" max=\"2018-01-01\"  value = \"2016-11-21\" required /><br>\n");
       out.write("                Check-out<br>\n");
-      out.write("                <input type=\"date\" id=\"departureDate\" name=\"checkoutdate\" min=\"2016-11-21\" max=\"2018-01-01\" required /><br>\n");
+      out.write("                <input type=\"date\" id=\"departureDate\" name=\"checkoutdate\" min=\"2016-11-21\" max=\"2018-01-01\" value = \"2016-11-21\" required /><br>\n");
       out.write("                <table>\n");
       out.write("\n");
       out.write("                    <tr>\n");
@@ -193,7 +198,7 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <select id=\"adults\" name=\"adults\">\n");
       out.write("                                ");
 
-                                    for(int i = 1; i <= MAXNUMADULTS; i++){
+                                    for(int i = 1; i <= MAX_NUM_ADULTS; i++){
                                         out.println("<option value="+i+">"+i+"</option>");
                                     }
 
@@ -210,7 +215,7 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <select id=\"children\" name=\"children\">\n");
       out.write("                                ");
 
-                                    for(int i = 0; i <= MAXNUMCHILDREN; i++){
+                                    for(int i = 0; i <= MAX_NUM_CHILDREN; i++){
                                         out.println("<option value="+i+">"+i+"</option>");
                                     }
 
@@ -228,13 +233,14 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                \n");
       out.write("            </div>\n");
       out.write("            <div id=\"listRooms\">\n");
+      out.write("                 <!-- Options bar --> \n");
       out.write("                <div id=\"formatConfiguration\">\n");
       out.write("                    <div id=\"optionsFormat\">\n");
       out.write("                        Price <span class=\"redColor\">▼</span><!-- ▼ ▲ ☰ ☷ -->\n");
       out.write("                    </div>\n");
       out.write("                    <div id=\"typeFormat\">\n");
-      out.write("                        <span>☰</span>\n");
-      out.write("                        <span>☷</span>\n");
+      out.write("                        <span id=\"largeViewRoom\">☰</span>\n");
+      out.write("                        <span id=\"shortViewRoom\">☷</span>\n");
       out.write("                    </div>\n");
       out.write("                </div>\n");
       out.write("                <div id=\"typeRoomConfiguration\">\n");
@@ -245,66 +251,24 @@ public final class rooms_jsp extends org.apache.jasper.runtime.HttpJspBase
                         for (int i = 0; i < typeRooms.size(); i++) {
                                 out.print("<span onclick='changeActiveClass(this)' class='active'>" + typeRooms.get(i).getTypeRoom() + "</span>");
                         }
-                        
-                        
+                         
                     
       out.write("\n");
-      out.write("                    <script>\n");
-      out.write("                        function changeActiveClass(obj) {\n");
-      out.write("\n");
-      out.write("                            let rooms = document.getElementsByClassName(\"room\");\n");
-      out.write("                            obj.classList.toggle(\"active\");\n");
-      out.write("\n");
-      out.write("                            for (let i = 0; i < rooms.length; i++) {\n");
-      out.write("                                    if(rooms[i].getAttribute(\"typeRoom\") == obj.innerHTML) {\n");
-      out.write("                                        rooms[i].classList.toggle(\"visible\");\n");
-      out.write("                                    }\n");
-      out.write("                                }\n");
-      out.write("\n");
-      out.write("                        }\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("                    </script>\n");
+      out.write("                    \n");
       out.write("                </div>\n");
+      out.write("                    \n");
+      out.write("                <!-- End options bar -->    \n");
+      out.write("                <!-- List of rooms (only completed when we use autocompleteRoomsList --> \n");
       out.write("                \n");
-      out.write("                <!--\n");
-      out.write("                ");
-
-                       // ArrayList<Room> rooms = roomDB.getRooms();
-                       // for (int i = 0; i < rooms.size(); i++) {
-                                //out.print("<div class='room'>");
-                                //out.print("<img class='imageRoom' src='http://www.srisrivaastu.com/image/peh-superior-room.jpg'alt='room' width='200' height='200' >");
-                                //out.print("<div class='nameHotel'>" + rooms.get(i).getHotelName() + "</div>");
-                                //out.print("<div class='price'>€" + rooms.get(i).getPrice() + "</div>");
-                                //out.print("<div class='typeRoom'><img src='"+request.getContextPath()+"/assets/images/numpeopleroom.svg' width='20' height='20'/>" + rooms.get(i).getTypeRoom() +"</div>");
-                                //out.print("<div class='numberOfRoomsAvailable'>Habitaciones disponibles: " + rooms.get(i).getNumRoomsAvailable() + "</div>");
-                                //out.print("<button class='bookingButton'>Reservar habitación ➤</button>");
-                                //out.print("</div>");
-                
-                        //}
-                        
-                        
-                
-      out.write("\n");
-      out.write("                -->\n");
       out.write("                \n");
-      out.write("               <!--\n");
-      out.write("                <div class=\"room\">\n");
-      out.write("                    <img class=\"imageRoom\"src=\"http://www.srisrivaastu.com/image/peh-superior-room.jpg\"\n");
-      out.write("                         alt=\"room\" width=\"200\" height=\"200\" >\n");
-      out.write("                    <div class=\"nameHotel\">Hotel SonNet</div>\n");
-      out.write("                    <div class=\"price\">€350</div>\n");
-      out.write("                    <div class=\"typeRoom\"><img src=\"");
-      out.print( request.getContextPath() );
-      out.write("/assets/images/numpeopleroom.svg\" width=\"20\" height=\"20\"/> Doble Vista Mar</div>\n");
-      out.write("                    <div class=\"numberOfRoomsAvailable\">Habitaciones disponibles: 50</div>\n");
-      out.write("                    <button class=\"bookingButton\">Reservar habitación ➤</button>\n");
-      out.write("                </div>\n");
-      out.write("               -->\n");
-      out.write("            \n");
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("    </body>\n");
+      out.write("    \n");
+      out.write("    <!-- Ending scripts -->\n");
+      out.write("    <script src=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/js/rooms/main.js\"></script>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

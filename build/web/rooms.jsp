@@ -12,6 +12,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Title and main Icon -->
+        <title>Compositor Hotels</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-16x16.png">
+        <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon.ico">
         
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/styles/css/main.css">
@@ -19,6 +26,7 @@
         <!-- JS -->
         <script src="<%= request.getContextPath() %>/assets/js/ajax.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/autocompleteRoomsList.js"></script>
+        
         
         <!-- CDN -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -28,33 +36,29 @@
         <jsp:useBean id="roomDB" class="database.DBRoom" scope="request" />
         <jsp:useBean id="marketingDB" class="database.DBMarketing" scope="request" />
         
+        <!-- Set title, description, keywords and language -->
         <%
-            Header header = marketingDB.getHeaderInfoFromPage(request.getServletPath().replace("/", ""));
+            Header header = marketingDB.getHeaderFromPage(request.getServletPath().replace("/", ""));
             
             out.println("<meta name=\"title\" content="+ header.getTitle()+"/>");
             out.println("<meta name=\"description\" content="+ header.getDescription() +"/>");
             out.println("<meta name=\"keywords\" content="+ header.getKeywords()+"/>");
             out.println("<meta name=\"language\" content="+ header.getLanguage()+"/>");
             
-            marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
+            // Increase a visit on this page
+            marketingDB.increaseVisitsFromPage(request.getServletPath().replace("/", ""));
 
         %>
         
-        <!-- Declarations -->
-        <%! public static final int MAXNUMROOMS = 10;
-            public static final int MAXNUMADULTS = 10;
-            public static final int MAXNUMCHILDREN = 10;
+        <!-- Global declarations -->
+        <%! 
+            public static final int MAX_NUM_ADULTS = 10;
+            public static final int MAX_NUM_CHILDREN = 10;
         %>
         
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Compositor Hotels</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon-16x16.png">
-        <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="<%= request.getContextPath() %>/assets/images/favicon/favicon.ico">
         
-
     </head>
+    <!-- init() initialize ajax funcionality -->
     <body onload="init()">
         <header>
             <nav>
@@ -68,8 +72,10 @@
                 </ul>
             </nav>
         </header>
+                
+                
         <div id="content">
-            
+            <!-- Main panel -->
             <div id="panel">
                 <h1>Search</h1>
                     Hotel:<br>
@@ -78,7 +84,6 @@
 
                 <%
                     ArrayList<Hotel> hotels = hotelDB.getHotels();
-
                     for (int i = 0; i < hotels.size(); i++) {
                         out.print("<option value=\"" + hotels.get(i).getName() + "\">" + hotels.get(i).getName() + "</option>");
                     }
@@ -88,9 +93,9 @@
                 </select>
                 <br>
                 Check-in<br>
-                <input type="date" id="entryDate" name="checkindate" min="2016-11-21" max="2018-01-01" required /><br>
+                <input type="date" id="entryDate" name="checkindate" min="2016-11-21" max="2018-01-01"  value = "2016-11-21" required /><br>
                 Check-out<br>
-                <input type="date" id="departureDate" name="checkoutdate" min="2016-11-21" max="2018-01-01" required /><br>
+                <input type="date" id="departureDate" name="checkoutdate" min="2016-11-21" max="2018-01-01" value = "2016-11-21" required /><br>
                 <table>
 
                     <tr>
@@ -100,7 +105,7 @@
                         <td>
                             <select id="adults" name="adults">
                                 <%
-                                    for(int i = 1; i <= MAXNUMADULTS; i++){
+                                    for(int i = 1; i <= MAX_NUM_ADULTS; i++){
                                         out.println("<option value="+i+">"+i+"</option>");
                                     }
 
@@ -115,7 +120,7 @@
                         <td>
                             <select id="children" name="children">
                                 <%
-                                    for(int i = 0; i <= MAXNUMCHILDREN; i++){
+                                    for(int i = 0; i <= MAX_NUM_CHILDREN; i++){
                                         out.println("<option value="+i+">"+i+"</option>");
                                     }
 
@@ -132,13 +137,14 @@
                 
             </div>
             <div id="listRooms">
+                 <!-- Options bar --> 
                 <div id="formatConfiguration">
                     <div id="optionsFormat">
                         Price <span class="redColor">▼</span><!-- ▼ ▲ ☰ ☷ -->
                     </div>
                     <div id="typeFormat">
-                        <span>☰</span>
-                        <span>☷</span>
+                        <span id="largeViewRoom">☰</span>
+                        <span id="shortViewRoom">☷</span>
                     </div>
                 </div>
                 <div id="typeRoomConfiguration">
@@ -148,59 +154,19 @@
                         for (int i = 0; i < typeRooms.size(); i++) {
                                 out.print("<span onclick='changeActiveClass(this)' class='active'>" + typeRooms.get(i).getTypeRoom() + "</span>");
                         }
-                        
-                        
+                         
                     %>
-                    <script>
-                        function changeActiveClass(obj) {
-
-                            let rooms = document.getElementsByClassName("room");
-                            obj.classList.toggle("active");
-
-                            for (let i = 0; i < rooms.length; i++) {
-                                    if(rooms[i].getAttribute("typeRoom") == obj.innerHTML) {
-                                        rooms[i].classList.toggle("visible");
-                                    }
-                                }
-
-                        }
-
-
-                    </script>
+                    
                 </div>
+                    
+                <!-- End options bar -->    
+                <!-- List of rooms (only completed when we use autocompleteRoomsList --> 
                 
-                <!--
-                <%
-                       // ArrayList<Room> rooms = roomDB.getRooms();
-                       // for (int i = 0; i < rooms.size(); i++) {
-                                //out.print("<div class='room'>");
-                                //out.print("<img class='imageRoom' src='http://www.srisrivaastu.com/image/peh-superior-room.jpg'alt='room' width='200' height='200' >");
-                                //out.print("<div class='nameHotel'>" + rooms.get(i).getHotelName() + "</div>");
-                                //out.print("<div class='price'>€" + rooms.get(i).getPrice() + "</div>");
-                                //out.print("<div class='typeRoom'><img src='"+request.getContextPath()+"/assets/images/numpeopleroom.svg' width='20' height='20'/>" + rooms.get(i).getTypeRoom() +"</div>");
-                                //out.print("<div class='numberOfRoomsAvailable'>Habitaciones disponibles: " + rooms.get(i).getNumRoomsAvailable() + "</div>");
-                                //out.print("<button class='bookingButton'>Reservar habitación ➤</button>");
-                                //out.print("</div>");
                 
-                        //}
-                        
-                        
-                %>
-                -->
-                
-               <!--
-                <div class="room">
-                    <img class="imageRoom"src="http://www.srisrivaastu.com/image/peh-superior-room.jpg"
-                         alt="room" width="200" height="200" >
-                    <div class="nameHotel">Hotel SonNet</div>
-                    <div class="price">€350</div>
-                    <div class="typeRoom"><img src="<%= request.getContextPath() %>/assets/images/numpeopleroom.svg" width="20" height="20"/> Doble Vista Mar</div>
-                    <div class="numberOfRoomsAvailable">Habitaciones disponibles: 50</div>
-                    <button class="bookingButton">Reservar habitación ➤</button>
-                </div>
-               -->
-            
             </div>
         </div>
     </body>
+    
+    <!-- Ending scripts -->
+    <script src="<%= request.getContextPath() %>/assets/js/rooms/main.js"></script>
 </html>

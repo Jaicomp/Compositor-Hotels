@@ -24,12 +24,12 @@ public class DBMarketing {
         accessDB = new AccessDB();
     }
     
-    public Header getHeaderInfoFromPage(String namePage) {
+    public Header getHeaderFromPage(String page) {
         
         Header header = null;
         try {
-            //ResultSet resultSet = accessDB.executeSQLStatement("SELECT * FROM \"Marketing\" WHERE namepage = '" + namePage + "';");
-            ResultSet resultSet = accessDB.executeSQLStatement("SELECT * FROM \"Marketing\" WHERE \"namepage\"='" + namePage + "';");
+            //ResultSet resultSet = accessDB.executeSQLStatement("SELECT * FROM \"Marketing\" WHERE namepage = '" + page + "';");
+            ResultSet resultSet = accessDB.executeSQLStatement("SELECT * FROM \"Marketing\" WHERE \"namepage\"='" + page + "';");
             
             
             while(resultSet.next()){
@@ -48,12 +48,15 @@ public class DBMarketing {
         
         return header;
     }
-    
-    public void increaseOneVisitOnPage(String namePage) {
+    /**
+    *   Increase one visit on this page (first parameter)
+    *
+    */
+    public void increaseVisitsFromPage(String page) {
         
         try {
             
-            accessDB.executeSQLStatement("UPDATE \"Marketing\" SET visited = visited + 1 WHERE namepage='" + namePage + "';");
+            accessDB.executeSQLStatement("UPDATE \"Marketing\" SET visited = visited + 1 WHERE namepage='" + page + "';");
             
         } catch (SQLException ex) {
             Logger.getLogger(DBMarketing.class.getName()).log(Level.SEVERE, null, ex);

@@ -25,3 +25,25 @@
 * body div#listTypeRoom div.RelationHotelTypeRoom div input {
   width: 100%;
 }
+* body div#listTypeRoom div.RelationHotelTypeRoom div button {
+  color: white;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  border: 0;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: #3498DB;
+  text-shadow: 0px -2px #2980B9;
+  text-decoration: none;
+  padding: 5px;
+  margin-bottom: 3px;
+  text-align: center;
+  width: 150px;
+  background-color: #0896ff;
+  border-bottom: 5px solid #005da1;
+}
+* body div#listTypeRoom div.RelationHotelTypeRoom div button:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid;
+}

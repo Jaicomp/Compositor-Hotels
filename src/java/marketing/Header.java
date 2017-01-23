@@ -12,16 +12,16 @@ package marketing;
 public class Header {
     
     private int id;
-    private String namePage;
+    private String page;
     private String title;
     private String keywords;
     private String description;
     private String language;
     private int visits;
     
-    public Header(int id, String namePage, String title, String keywords, String description, String language) {
+    public Header(int id, String page, String title, String keywords, String description, String language) {
         this.id = id;
-        this.namePage = namePage;
+        this.page = page;
         this.title = title;
         this.keywords = keywords;
         this.description = description;
@@ -29,9 +29,9 @@ public class Header {
         this.visits = 0;
     }
 
-    public Header(int id, String namePage, String title, String keywords, String description, String language, int visits) {
+    public Header(int id, String page, String title, String keywords, String description, String language, int visits) {
         this.id = id;
-        this.namePage = namePage;
+        this.page = page;
         this.title = title;
         this.keywords = keywords;
         this.description = description;
@@ -43,8 +43,8 @@ public class Header {
         return id;
     }
     
-    public String getNamePage() {
-        return namePage;
+    public String getPage() {
+        return page;
     }
 
     public String getTitle() {
@@ -63,7 +63,7 @@ public class Header {
         return language;
     }
 
-    public int getVisited() {
+    public int getVisits() {
         return visits;
     }
     

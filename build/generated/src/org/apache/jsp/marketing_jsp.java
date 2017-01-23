@@ -51,6 +51,23 @@ public final class marketing_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <!-- Title and main Icon -->\n");
+      out.write("        <title>Compositor Hotels</title>\n");
+      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon-32x32.png\">\n");
+      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon-96x96.png\">\n");
+      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon-16x16.png\">\n");
+      out.write("        <link rel=\"shortcut icon\" type=\"image/x-icon\" sizes=\"16x16\" href=\"");
+      out.print( request.getContextPath() );
+      out.write("/assets/images/favicon/favicon.ico\">\n");
+      out.write("        \n");
+      out.write("        \n");
       out.write("        <!-- Styles -->\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"");
       out.print( request.getContextPath() );
@@ -76,32 +93,18 @@ public final class marketing_jsp extends org.apache.jasper.runtime.HttpJspBase
       }
       out.write("\n");
       out.write("        \n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Compositor Hotels</title>\n");
-      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"");
-      out.print( request.getContextPath() );
-      out.write("/assets/images/favicon/favicon-32x32.png\">\n");
-      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"");
-      out.print( request.getContextPath() );
-      out.write("/assets/images/favicon/favicon-96x96.png\">\n");
-      out.write("        <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"");
-      out.print( request.getContextPath() );
-      out.write("/assets/images/favicon/favicon-16x16.png\">\n");
-      out.write("        <link rel=\"shortcut icon\" type=\"image/x-icon\" sizes=\"16x16\" href=\"");
-      out.print( request.getContextPath() );
-      out.write("/assets/images/favicon/favicon.ico\">\n");
       out.write("        \n");
       out.write("        \n");
       out.write("        ");
 
-            Header header = marketingDB.getHeaderInfoFromPage(request.getServletPath().replace("/", ""));
+            Header header = marketingDB.getHeaderFromPage(request.getServletPath().replace("/", ""));
             
             out.println("<meta name=\"title\" content="+ header.getTitle()+"/>");
             out.println("<meta name=\"description\" content="+ header.getDescription() +"/>");
             out.println("<meta name=\"keywords\" content="+ header.getKeywords()+"/>");
             out.println("<meta name=\"language\" content="+ header.getLanguage()+"/>");
             
-            marketingDB.increaseOneVisitOnPage(request.getServletPath().replace("/", ""));
+            marketingDB.increaseVisitsFromPage(request.getServletPath().replace("/", ""));
 
         
       out.write("\n");
@@ -114,10 +117,10 @@ public final class marketing_jsp extends org.apache.jasper.runtime.HttpJspBase
 
            ArrayList<Header> headers = marketingDB.getHeaders();
            for (int i = 0; i < headers.size(); i++) {
-                   out.println("<div class=\"header\" page=\"" + headers.get(i).getNamePage() + "\">");
+                   out.println("<div class=\"header\" page=\"" + headers.get(i).getPage() + "\">");
                    
                    out.println("<div class=\"namePage\" page=\"rooms.jsp\">");
-                   out.println("<h1>" + headers.get(i).getNamePage() + "</h1>");
+                   out.println("<h1>" + headers.get(i).getPage()+ "</h1>");
                    out.println("</div>");
                    
                    out.println("<div class=\"title\">");

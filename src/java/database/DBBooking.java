@@ -5,8 +5,10 @@
  */
 package database;
 
+import hotel.Booking;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,6 +35,31 @@ public class DBBooking {
         }
             
         
+    }
+    
+    public ArrayList<Booking> getBooking(String idTypeRoom, String nameHotel) {
+        ArrayList<Booking> bookings = new ArrayList<Booking>();
+        try {
+        ResultSet resultSet = accessDB.executeSQLStatement("SELECT adult,smallers,entry_date,departure_date,name,idtyperoom FROM \"Booking\" INNER JOIN \"Hotel\" ON \"Booking\".idhotel=\"Hotel\".id WHERE idtyperoom='" + idTypeRoom + "' AND name='" + nameHotel + "';");
+        
+        while(resultSet.next()) {
+            
+            String adult = accessDB.toUtf8(resultSet.getString("adult"));
+            String smallers = accessDB.toUtf8(resultSet.getString("smallers"));
+            String entryDate = accessDB.toUtf8(resultSet.getString("entry_date"));
+            String departureDate = accessDB.toUtf8(resultSet.getString("departure_date"));
+            String nameeHotel = accessDB.toUtf8(resultSet.getString("name"));
+            String idTypeeRoom = accessDB.toUtf8(resultSet.getString("idtyperoom"));
+            
+            bookings.add(new Booking(adult,smallers,entryDate,departureDate,nameeHotel,idTypeeRoom));
+            
+        }
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(DBBooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bookings;
     }
     
     

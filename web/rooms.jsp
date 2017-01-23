@@ -143,8 +143,8 @@
                         Price <span class="redColor">▼</span><!-- ▼ ▲ ☰ ☷ -->
                     </div>
                     <div id="typeFormat">
-                        <span>☰</span>
-                        <span>☷</span>
+                        <span id="largeViewRoom">☰</span>
+                        <span id="shortViewRoom">☷</span>
                     </div>
                 </div>
                 <div id="typeRoomConfiguration">

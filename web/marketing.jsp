@@ -73,7 +73,7 @@
                    out.println("</div>");
                    
                    out.println("<div class=\"visits\">");
-                   out.println("<span>Visits: </span>"+headers.get(i).getVisited());
+                   out.println("<span>Visits: </span>"+headers.get(i).getVisits());
                    out.println("</div>");
                    
                    out.println("</div>");

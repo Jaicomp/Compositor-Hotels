@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/src/java/database/DBTypeRoom.java</file>
+            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/rooms.jsp</file>
+            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/assets/js/autocompleteRoomsList.js</file>
+            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/reservation.jsp</file>
             <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/marketing.jsp</file>
-            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/src/java/hotel/TypeRoom.java</file>
+            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/src/java/marketing/Header.java</file>
             <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/index.jsp</file>
             <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/web/reception.jsp</file>
-            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/src/java/hotel/Room.java</file>
             <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/src/java/database/DBMarketing.java</file>
+            <file>file:/home/jaimescript/NetBeansProjects/CompositorHotels/src/java/ajaxPages/AutocompleteRoomsList.java</file>
         </group>
     </open-files>
 </project-private>

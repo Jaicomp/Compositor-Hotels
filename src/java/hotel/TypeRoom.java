@@ -11,26 +11,33 @@ package hotel;
  */
 public class TypeRoom {
  
+    private String idRHotelTypeRoom;
     private String idTypeRoom;
+
+
     private String typeRoom;
     private String nameHotel;
     private String numroomsavailable;
     private String price;
     
-    public TypeRoom(String idRHotelTypeRoom, String typeRoom,String nameHotel,String numroomsavailable,String price) {
+    public TypeRoom(String idRHotelTypeRoom, String idTypeRoom, String typeRoom,String nameHotel,String numroomsavailable,String price) {
        
-        this.idTypeRoom = idRHotelTypeRoom;
+        this.idRHotelTypeRoom = idRHotelTypeRoom;
+        this.idTypeRoom = idTypeRoom;
         this.typeRoom = typeRoom;
         this.nameHotel = nameHotel;
         this.numroomsavailable = numroomsavailable;
         this.price = price;
     }
 
-
     public String getIdRHotelTypeRoom() {
-        return idTypeRoom;
+        return idRHotelTypeRoom;
     }
 
+    public String getIdTypeRoom() {
+        return idTypeRoom;
+    }
+    
     public String getTypeRoom() {
         return typeRoom;
     }
